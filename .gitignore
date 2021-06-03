@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/OEC.Fusion.GlobalImageRepository/OEC.Fusion.GlobalImageRepository/bin/Debug/netcoreapp3.1
+/OEC.Fusion.GlobalImageRepository/.vs/OEC.Fusion.GlobalImageRepository
+/OEC.Fusion.GlobalImageRepository/OEC.Fusion.GlobalImageRepository/obj
