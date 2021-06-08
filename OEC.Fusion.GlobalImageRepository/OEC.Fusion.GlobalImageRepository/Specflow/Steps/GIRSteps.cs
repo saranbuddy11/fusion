@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OEC.Fusion.GlobalImageRepository.Actions;
+using OEC.Fusion.GlobalImageRepository.Helpers;
 using System;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -12,11 +14,11 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
     public class GIRSteps : FileHelper
     {
         String subdir { get; set; }
-
-        //string datetime { get; set; }
         static string datetime = getCurDate();
 
-
+        /*private DBHelper dbhelper = new DBHelper();
+        public DAL dl = new DAL(sql);
+        private static string sql;*/
 
         [Given(@"When I connect to the database")]
         public void GivenWhenIConnectToTheDatabase()
@@ -68,21 +70,35 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         }
 
         [Then(@"Rename the files with the given partnumber")]
-        public void RenamingFilesWithPartNumber()
+        public void RenameFilesWithPartNumber()
         {
-            //Console.WriteLine("Test2");
+            String partnumber = "MM1PZ16A550BA";
+            DirectoryInfo d = new DirectoryInfo(@"C:\\Users\\arameshbaabu\\Desktop\\GIR\\Local\\Aiswarya\\pa[" + datetime + "]\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", partnumber));
+            }
         }
 
         [Then(@"Zip the folder")]
-        public void ZipFolder()
+        public void ZipCreatedFolder()
         {
-            Console.WriteLine("Test2");
+            ZipFile.CreateFromDirectory(@"C:\Users\arameshbaabu\Desktop\GIR\Local\Aiswarya\pa[" + datetime + "]", @"C:\Users\arameshbaabu\Desktop\GIR\Local\Aiswarya\pa[" + datetime + "].zip");
         }
 
         [Then(@"Copy the zip file to the Images folder")]
         public void CopyZipFilesToImagesFolder()
         {
-            Console.WriteLine("Test2");
+            String src = @"C:\Users\arameshbaabu\Desktop\GIR\Local\Aiswarya\pa[" + datetime + "].zip";
+            String tgt = @"C:\Users\arameshbaabu\Desktop\GIR\Images\pa[" + datetime + "].zip";
+            string tgtDirectory = Path.GetDirectoryName(tgt);
+            if (File.Exists(src) && Directory.Exists(tgtDirectory))
+            {
+                File.Copy(src, tgt);
+            }
+                      
+            
         }
 
         [Then(@"Unzip the copied folder in the Images")]
