@@ -2,6 +2,7 @@
 using OEC.Fusion.GlobalImageRepository.Actions;
 using OEC.Fusion.GlobalImageRepository.Helpers;
 using System;
+using System.Configuration;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
@@ -15,15 +16,17 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
     {
         String subdir { get; set; }
         static string datetime = getCurDate();
-
-        /*private DBHelper dbhelper = new DBHelper();
-        public DAL dl = new DAL(sql);
-        private static string sql;*/
+        //String deviceID = ConfigurationManager.AppSettings["DeviceID"];
+        //AssertLight assert = new AssertLight();
+        private DBHelper dbhelper = new DBHelper();
 
         [Given(@"When I connect to the database")]
         public void GivenWhenIConnectToTheDatabase()
         {
             Console.WriteLine("Test");
+            String deviceID = ConfigurationManager.AppSettings["DeviceID"];
+            dbhelper.GetPartNumber();
+
         }
 
         [Given(@"I execute the query to get the partnumber")]
@@ -47,19 +50,19 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
                 Directory.CreateDirectory(dir);
             }
 
-        Directory.CreateDirectory(CreateFolderWithCurrentDate(datetime));
-            
+            Directory.CreateDirectory(CreateFolderWithCurrentDate(datetime));
+
         }
 
         [Then(@"Copy 24 files from parts folder to the newly created folder")]
         public void CopyFilesFromPartsToNewFolder()
         {
 
-            
+
             String source = @"C:\Users\arameshbaabu\Desktop\GIR\Local\Aiswarya\ImagesToUse";
             String target = @"C:\\Users\\arameshbaabu\\Desktop\\GIR\\Local\\Aiswarya\\pa[" + datetime + "]\\";
-            
-            
+
+
             String[] files = Directory.GetFiles(source);
             foreach (string fil in files)
             {
@@ -97,23 +100,25 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             {
                 File.Copy(src, tgt);
             }
-                      
-            
+
+
         }
 
         [Then(@"Unzip the copied folder in the Images")]
         public void UnzipFolder()
         {
-            Console.WriteLine("Test2");
-        }
+            /*string zipPath = @"C:\Users\arameshbaabu\Desktop\GIR\Images\pa[" + datetime + "].zip";
+            string extractPath = @"C:\Users\arameshbaabu\Desktop\GIR\Images";
 
+            ZipFile.ExtractToDirectory(zipPath, extractPath);
+            Console.WriteLine("Unzipfolder");*/
+        }
+        
         [Then(@"Verify the partnumber is present in the image folder")]
         public void VerifyPartNumberPresentInImages()
         {
-            Console.WriteLine("Test2");
+         //AssertLight.AreEqual("MM1PZ16A550BA-360-01",)
         }
-
-
 
     }
 }
