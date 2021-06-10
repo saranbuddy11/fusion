@@ -13,14 +13,14 @@ namespace OEC.Fusion.GlobalImageRepository.Actions
         public static string getCurDate() 
         {
           DateTime now = DateTime.Now;
-          string datetime = now.ToString("ddMMyyyyHHmmss");
+          string datetime = now.ToString("ddMMyyyy_HHmmss");
           return datetime;
         }
         
         //To create a folder with the current date and time name format
         public static string CreateFolderWithCurrentDate(string datetime)
         {
-            string subdir = @"C:\Users\arameshbaabu\Desktop\GIR\Local\Aiswarya\pa[" + datetime + "]";
+            string subdir = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\pa" + datetime + "";
             return subdir;
         }
 
