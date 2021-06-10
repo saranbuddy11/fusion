@@ -27,19 +27,32 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void GivenWhenIConnectToTheDatabase()
         {
             Console.WriteLine("Test");
-            Console.WriteLine(datetime);
-           /* String deviceID = ConfigurationManager.AppSettings["QAServerPath"];
+            //Console.WriteLine(datetime);
+           String deviceID = ConfigurationManager.AppSettings["QAServerPath"];
             Console.WriteLine("Test");
             String result = dbhelper.GetPartNumber()[0];
-            Console.WriteLine(result);*/
+            Console.WriteLine(result);
         }
 
         [When(@"I verify the partnumber images are not present in working directory")]
         public void WhenIVerifyThePartnumberImagesAreNotPresentInTheWorkingDirectory()
         {
             Console.WriteLine("Test");
-           // Assert.IsFalse();
-                    
+            //Assert.IsFalse(false);
+                
+                //get the result ie., partnumber
+                //get the files name in images 
+                //check if the partnumber is present in images
+
+                string[] search = Directory.GetFiles(@"C:\Users\arameshbaabu\Desktop\GIR\Local\Aiswarya\ImagesToUse\", "*.jpg");
+                foreach (var files in search)
+                {
+                    FileInfo info = new FileInfo(files);
+                    var fileName = Path.GetFileName(info.FullName);
+                    Assert.IsFalse(false, result + "-360-01.jpg", fileName);
+                }
+            
+            Console.WriteLine("Files not present in  Images");
         }
     
 
@@ -122,7 +135,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify the partnumber is present in the image folder")]
         public void VerifyPartNumberPresentInImages()
         {
-            int a = 1;
+            /*int a = 1;
             string[] search = Directory.GetFiles(@"C:\Users\arameshbaabu\Desktop\GIR\Local\Aiswarya\ImagesToUse\", "*.jpg");
             string b;
             foreach (var files in search)
@@ -144,7 +157,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
                     Assert.AreEqual(result + "-360-" + a + ".jpg", fileName);
                     a++;
                 }
-            }
+            }*/
+            Console.WriteLine("Test");
         }
 
     }
