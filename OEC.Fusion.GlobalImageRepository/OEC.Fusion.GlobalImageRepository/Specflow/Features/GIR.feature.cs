@@ -138,13 +138,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Zip the folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("Copy the zip file to the Images folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Find the sftp dirctory to upload the zip file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.And("Unzip the copied folder in the Images", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Copy the zip file to the ctsftp.gir2qc folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
+ testRunner.And("Run spPRODDailyDownload procedure to Upload zip file in Images folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
  testRunner.And("Verify the partnumber is present in the image folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("Verify the partnumber is present in the image folder using query", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
