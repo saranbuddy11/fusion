@@ -86,7 +86,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return ds;
         }
 
-        public object ExecuteStoredProcedureScalar(string sprocName, List<System.Data.SqlClient.SqlParameter> @params)
+        public object ExecuteStoredProcedureScalar(string sprocName)
         {
             Object returnValue = null;
             using (SqlConnection con = new SqlConnection(_DSN))
@@ -96,7 +96,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
                     try
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddRange(@params.ToArray());
+                       // cmd.Parameters.AddRange(@params.ToArray());
                         con.Open();
                         returnValue = cmd.ExecuteScalar();
                     }

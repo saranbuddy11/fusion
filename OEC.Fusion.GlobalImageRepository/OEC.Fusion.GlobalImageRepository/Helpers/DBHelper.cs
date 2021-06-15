@@ -43,5 +43,13 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return sFTPpath;
         }
 
+        public Object spPRODDailyDownload(string sprocName)
+        {
+            
+            var ds = dal.ExecuteStoredProcedureScalar(sprocName);
+            Object results = new object();
+
+            return ds;
+        }
     }
 }

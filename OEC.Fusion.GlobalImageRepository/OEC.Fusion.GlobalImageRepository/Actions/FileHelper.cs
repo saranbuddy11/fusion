@@ -13,7 +13,7 @@ namespace OEC.Fusion.GlobalImageRepository.Actions
         public static string getCurDate() 
         {
           DateTime now = DateTime.Now;
-          string datetime = now.ToString("ddMMyyyy_HHmmss");
+          string datetime = now.ToString("yyyyMMdd_HHmmss");
           return datetime;
         }
         
