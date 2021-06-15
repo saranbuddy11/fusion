@@ -11,7 +11,6 @@
           "MSTest.TestAdapter": "2.1.0",
           "MSTest.TestFramework": "2.1.0",
           "Microsoft.NET.Test.Sdk": "16.5.0",
-          "Microsoft.Office.Interop.Outlook": "15.0.4797.1003",
           "SpecFlow": "3.7.38",
           "SpecFlow.MsTest": "3.7.38",
           "System.Configuration.ConfigurationManager": "5.0.0",
@@ -134,14 +133,6 @@
       },
       "Microsoft.NETCore.Platforms/5.0.0": {},
       "Microsoft.NETCore.Targets/1.1.3": {},
-      "Microsoft.Office.Interop.Outlook/15.0.4797.1003": {
-        "runtime": {
-          "lib/net20/Microsoft.Office.Interop.Outlook.dll": {
-            "assemblyVersion": "15.0.0.0",
-            "fileVersion": "15.0.4797.1003"
-          }
-        }
-      },
       "Microsoft.TestPlatform.ObjectModel/16.5.0": {
         "dependencies": {
           "NuGet.Frameworks": "5.0.0"
@@ -1514,13 +1505,6 @@
       "sha512": "sha512-3Wrmi0kJDzClwAC+iBdUBpEKmEle8FQNsCs77fkiOIw/9oYA07bL1EZNX0kQ2OMN3xpwvl0vAtOCYY3ndDNlhQ==",
       "path": "microsoft.netcore.targets/1.1.3",
       "hashPath": "microsoft.netcore.targets.1.1.3.nupkg.sha512"
-    },
-    "Microsoft.Office.Interop.Outlook/15.0.4797.1003": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-7tvZ8vtSemSxJxrarL/i3oYuha4ElXxvrjFfuWL0s5vmKVDHXjY72+Ed6S4xCPH+qDGEZYd49ObdGT7PC8BegQ==",
-      "path": "microsoft.office.interop.outlook/15.0.4797.1003",
-      "hashPath": "microsoft.office.interop.outlook.15.0.4797.1003.nupkg.sha512"
     },
     "Microsoft.TestPlatform.ObjectModel/16.5.0": {
       "type": "package",

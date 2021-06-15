@@ -16,17 +16,21 @@ namespace OEC.Fusion.GlobalImageRepository
             for (int i = 1; i <= 24; i++)
             {
                 
-                string path = @"\\UQWDB023.qa.oec.local\Images\" + result + " -360-";
+                string pathJPG = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
+                string pathJPEG = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
                 if (i < 10)
                 {
                     //To change the integer from 1 to 01 upto 09
                     //1 => the number of precision
                     int decimalLength = i.ToString("D").Length + 1;
                     string prefix = i.ToString("D" + decimalLength.ToString());
-                    path = path + prefix + ".jpg";
+                    pathJPG = pathJPG + prefix + ".jpg";
+                    pathJPEG = pathJPEG + prefix + ".jpeg";
+
                     try
                     {
-                        Assert.IsTrue(!File.Exists(path));
+                        bool a = (!File.Exists(pathJPG) && !File.Exists(pathJPEG));
+                        Assert.IsTrue(!File.Exists(pathJPG)||!File.Exists(pathJPEG));
                         rslt = false;                        
                     }
                     catch (Exception e)
@@ -38,10 +42,11 @@ namespace OEC.Fusion.GlobalImageRepository
                 }
                 else
                 {
-                    path = path + i + ".jpg";
+                    pathJPG = pathJPG + i + ".jpg";
+                    pathJPEG = pathJPEG + i + ".jpeg";
                     try
                     {
-                        Assert.IsTrue(!File.Exists(path));
+                        Assert.IsTrue(!File.Exists(pathJPG) || !File.Exists(pathJPEG));
                         rslt = false;
                     }
                     catch (Exception e)
@@ -61,7 +66,7 @@ namespace OEC.Fusion.GlobalImageRepository
             bool rslt = true;
             for (int i = 1; i <= 24; i++)
             {
-                string path = @"\\UQWDB023.qa.oec.local\Images\" + result + " -360-";
+                string path = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
                 if (i < 10)
                 {
                     //To change the integer from 1 to 01 upto 09

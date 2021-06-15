@@ -10,6 +10,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
     {
         private readonly DAL dal;
         private readonly string dsn = "Data Source=UQWDB023.qa.oec.local;Initial Catalog=GlobalImageRepository;Integrated Security=True";//ConfigHelper.DBConnectionString;
+        
         public DBHelper()
         {
             dal = new DAL(dsn);
@@ -41,6 +42,22 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
                 sFTPpath.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
             }
             return sFTPpath;
+        }
+
+        public List<String> getCurDateTime()
+        {
+            
+        var sb = new StringBuilder();
+            sb.AppendLine($"declare @curDateTime varchar(19) set @curDateTime = convert(varchar, getdate(), 120) select @curDateTime select 'pa' + SUBSTRING(@curDateTime, 1, 10) + '_' + SUBSTRING(@curDateTime, 12, 2) + SUBSTRING(@curDateTime, 15, 2) + SUBSTRING(@curDateTime, 18, 2)");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            List<String> curDateTime = new List<string>();
+           // curDateTime.Add(ds.Tables[1].Rows[1][0].ToString().Trim());
+            for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+            {
+                curDateTime.Add(ds.Tables[1].Rows[i][0].ToString().Trim());
+            }
+            return curDateTime;
         }
 
         public Object spPRODDailyDownload(string sprocName)

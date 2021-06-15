@@ -138,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Zip the folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("Find the sftp dirctory to upload the zip file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Find the sftp directory to upload the zip file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
  testRunner.And("Copy the zip file to the ctsftp.gir2qc folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -151,6 +151,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 14
  testRunner.And("Verify the partnumber is present in the image folder using query", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("verify email Images Successfully loaded into the repository in outlook", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

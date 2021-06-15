@@ -7,11 +7,12 @@ Scenario: GIR Image Verification
 	And Copy 24 files from parts folder to the newly created folder
 	And Rename the files with the given partnumber
 	And Zip the folder
-	And Find the sftp dirctory to upload the zip file
+	And Find the sftp directory to upload the zip file
 	And Copy the zip file to the ctsftp.gir2qc folder
 	And Run spPRODDailyDownload procedure to Upload zip file in Images folder
 	And Verify the partnumber is present in the image folder
 	And Verify the partnumber is present in the image folder using query
+	And verify email Images Successfully loaded into the repository in outlook 
 
 
 

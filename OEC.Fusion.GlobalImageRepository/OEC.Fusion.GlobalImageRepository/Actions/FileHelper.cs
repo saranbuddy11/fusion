@@ -10,7 +10,7 @@ namespace OEC.Fusion.GlobalImageRepository.Actions
     {
         public static string subdir;
         //To get the current date and time
-        public static string getCurDate() 
+       public static string getCurDate() 
         {
           DateTime now = DateTime.Now;
           string datetime = now.ToString("yyyyMMdd_HHmmss");
