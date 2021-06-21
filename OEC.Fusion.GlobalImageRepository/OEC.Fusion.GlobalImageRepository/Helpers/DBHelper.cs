@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OEC.Fusion.GlobalImageRepository.Specflow.Steps;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,11 +7,12 @@ using System.Text;
 
 namespace OEC.Fusion.GlobalImageRepository.Helpers
 {
-    public class DBHelper
+    public class DBHelper 
     {
         private readonly DAL dal;
         private readonly string dsn = "Data Source=UQWDB023.qa.oec.local;Initial Catalog=GlobalImageRepository;Integrated Security=True";//ConfigHelper.DBConnectionString;
-        
+       // GIRSteps gir = new GIRSteps();
+        public string result="";
         public DBHelper()
         {
             dal = new DAL(dsn);
@@ -27,6 +29,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             {
                 results.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
             }
+            //String results = "MM1PZ16A550BA";
             return results;
         }
 
@@ -59,6 +62,28 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             }
             return curDateTime;
         }
+
+        public List<string> VerifyImagesPresentInFolder(string result)
+        {
+            
+            //string PN = results[0];
+            //string PN = GetPartNumber()[0];
+            //String PN = "MM1PZ16A550BA";
+            var sb = new StringBuilder();
+            sb.AppendLine($"select Count(1) from [GlobalImageRepository].[import].[tblIMGImageListPersisted]  ilp where 1 = 1 and ilp.ImageView like '360-%' and ilp.PartNumber = '" +result+ "'");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            List<String> verifyImages = new List<String>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+            // verifyImages = ds.Tables[0].Rows[0][0].ToString().Trim();
+            verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
+            }
+            return verifyImages;
+        }
+
+       
+
 
         public Object spPRODDailyDownload(string sprocName)
         {

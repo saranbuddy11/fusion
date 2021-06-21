@@ -24,6 +24,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         private DBexeution dbe = new DBexeution();
         public string result = "";
         public string datetime = "";
+        public string imageResult = "";
         //private string path;
 
         ScenarioContext _scenariocontext;
@@ -37,14 +38,16 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Given(@"When I connect to the database to execute query to get the partNumber")]
        public void GivenWhenIConnectToTheDatabase()
         {
-            String deviceID = ConfigurationManager.AppSettings["QAServerPath"];
-            result = dbhelper.GetPartNumber()[0];
+            //String user = ConfigHelper.GetUserName();
+                String deviceID = ConfigurationManager.AppSettings["QAServerPath"];
+           result = dbhelper.GetPartNumber()[0];
+            
         }
 
         [When(@"I verify the partnumber images are not present in working directory")]
         public void WhenIVerifyThePartnumberImagesAreNotPresentInTheWorkingDirectory()
         {
-            Common rsult = new Common();
+           Common rsult = new Common();
             Assert.IsFalse(Convert.ToBoolean(rsult.ImageNotPresent(result)));
         }
     
@@ -52,7 +55,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Create a folder for images in local in the format payyyymmdd_hhmmss")]
         public void ThenCreateAFolderForImagesInLocal()
         {
-            datetime = dbhelper.getCurDateTime()[0];
+           datetime = dbhelper.getCurDateTime()[0];
             fileOp.CreateFolderWithCurrentDateTime(datetime);
         }
 
@@ -60,7 +63,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Copy 24 files from parts folder to the newly created folder")]
         public void CopyFilesFromPartsToNewFolder()
         {
-            fileOp.CopyImagesToUse(datetime);
+             fileOp.CopyImagesToUse(datetime);
         }
 
 
@@ -81,21 +84,21 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Find the sftp directory to upload the zip file")]
         public void ThenFindTheSftpDirectoryToUploadTheZipFile()
         {
-            dbe.DirectoryToUploadTheZipFile();
+              dbe.DirectoryToUploadTheZipFile();
         }
 
 
         [Then(@"Copy the zip file to the ctsftp.gir2qc folder")]
         public void CopyZipFilesToGir2qcFolder()
         {
-            fileOp.CopyZipFilesToGir2qc(datetime);
+             fileOp.CopyZipFilesToGir2qc(datetime);
         }
 
 
         [Then(@"Run spPRODDailyDownload procedure to Upload zip file in Images folder")]
         public void ThenRunSpPRODDailyDownloadProcedureToUploadZipFileInImagesFolder()
         {
-            dbe.RunSpPRODDailyDownloadProcedure();
+              dbe.RunSpPRODDailyDownloadProcedure();
         }
         
         [Then(@"Verify the partnumber is present in the image folder")]
@@ -103,14 +106,15 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         {
 
             Common rsult = new Common();
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(result)));
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(result))); 
         }
 
         [Then(@"Verify the partnumber is present in the image folder using query")]
         public void ThenVerifyThePartnumberIsPresentInTheImageFolderUsingQuery()
         {
-            //ScenarioContext.Current.Pending();
-            Console.WriteLine("test");
+            Common rsult = new Common();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(result)));
+            
         }
 
         [Then(@"verify email Images Successfully loaded into the repository in outlook")]

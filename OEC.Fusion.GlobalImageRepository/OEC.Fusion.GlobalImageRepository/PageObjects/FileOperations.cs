@@ -11,6 +11,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
     {
         private DBHelper dbhelper = new DBHelper();
         public string datetime = "";
+        
     
 
         public void CreateFolderWithCurrentDateTime(string dateTime)
@@ -49,7 +50,6 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
                 File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", result));
             }
         }
-
         public void ZipFolder(string datetime)
         {
             //string datetime = dbhelper.getCurDateTime()[0];
@@ -68,5 +68,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
                 File.Copy(src, tgt);
             }
         }
+
+
     }
 }
