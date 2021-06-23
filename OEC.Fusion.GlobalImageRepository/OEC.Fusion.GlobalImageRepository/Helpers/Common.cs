@@ -15,6 +15,7 @@ namespace OEC.Fusion.GlobalImageRepository
         public string imageResult = "";
         public string partNum = "";
         public string result = "";
+        public string datetime = "";
         public Boolean ImageNotPresent(string result)
         {
             Console.WriteLine(result);
@@ -114,14 +115,24 @@ namespace OEC.Fusion.GlobalImageRepository
         {
             bool output = true;
             string expectedValue = "24";
-            //String path =dBHelper.getsFTPPath()[0];
-            //String expVal;
-            //string  = value.ToString;
-            //int res;
-            //String expectedValue = "MM1PZ16A550BA-360-02";
             string res = dBHelper.VerifyImagesPresentInFolder(result)[0];
             Assert.AreEqual(expectedValue, res);
             return output;
+        }
+
+        public Boolean FileNotPresentInSftp(string datetime)
+        {
+            bool notPresent;
+            string path = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\";
+            if(path.Contains(datetime))
+            {
+                notPresent = false;
+            }
+            else
+            {
+                notPresent = true;
+            }
+            return notPresent;
         }
     }
 }

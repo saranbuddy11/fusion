@@ -1,87 +1,105 @@
 ﻿
+using Microsoft.Azure.Cosmos.Serialization.HybridRow.Schemas;
+using Microsoft.Office.Interop.Outlook;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+using Application = Microsoft.Office.Interop.Outlook.Application;
 
 namespace OEC.Fusion.GlobalImageRepository.Helpers
 {
     public class Outlook
     {
-        ////Sub: Global Image Repository - Upload Part Attribute(s) data not available.
-        ////From: ford-datadstr@clifford-thames.com
-        ////body:Dear Ford Admin,
-        ////Part attribute data is not available for part numbers listed in the attached CSV file.
-        ////Ford Image Repository Team
+        //Sub: Global Image Repository - Upload Part Attribute(s) data not available.
+        //From: ford-datadstr@clifford-thames.com
+        //body:Dear Ford Admin,
+        //Part attribute data is not available for part numbers listed in the attached CSV file.
+        //Ford Image Repository Team
 
 
-        ////Sub: Images Successfully loaded into the repository
-        ////From: Data Distribution <ford-datadstr@clifford-thames.com>
-        ////Body: Dear Ford Admin, 
-        ///*Zip File Name = pa09062021172720.zip
-        //Upload Username = GIR2CC
-        //Number of images loaded = 24 
-        //Region = NA
-        //Thank you,
-        //Ford Data Distribution Team.*/
+        //Sub: Images Successfully loaded into the repository
+        //From: Data Distribution <ford-datadstr@clifford-thames.com>
+        //Body: Dear Ford Admin, 
+        /*Zip File Name = pa09062021172720.zip
+        Upload Username = GIR2CC
+        Number of images loaded = 24 
+        Region = NA
+        Thank you,
+        Ford Data Distribution Team.*/
 
-        //public string EmailFrom { get; set; }
+        public string EmailFrom { get; set; }
 
-        //public string EmailSub { get; set; }
+        public string EmailSub { get; set; }
 
-        //public string EmailBody { get; set; }
+        public string EmailBody { get; set; }
 
-        //public static List<Outlook> ReadMailItems()
-        //{
-        //    Application outlookApplication = null;
-        //    NameSpace outlookNamespace = null;
-        //    //Messaging application programming interface
-        //    MAPIFolder inboxFolder = null;
+        public List<Outlook> ReadMailItems()
+        {
+            /*Microsoft.Office.Interop.Outlook.Application outlookApplication = null;
+            Namespace outlookNamespace = null;
+            //Messaging application programming interface
+            MAPIFolder inboxFolder = null;
+            Items mailItems = null;
+            List<Outlook> listEmailDetails = new List<Outlook>();
+            Outlook emailDetails;*/
 
-        //    Items mailItems = null;
-        //    List<Outlook> listEmailDetails = new List<Outlook>();
-        //    Outlook emailDetails;
+            Application outlookApplication = null;
+            NameSpace outlookNamespace = null;
+            MAPIFolder inboxFolder = null;
+            Items mailItems = null;
 
-        //    try
-        //    {
-        //        outlookApplication = new Application();
-        //        outlookNamespace = outlookApplication.GetNamespace("MAPI");
-        //        inboxFolder = outlookNamespace.GetDefaultFolder(OlDefaultFolders.olFolderInbox);
-        //        mailItems = inboxFolder.Items;
+            try
+            {
+                outlookApplication = new Application();
+                outlookNamespace = outlookApplication.GetNamespace("MAPI");
+                inboxFolder = outlookNamespace.GetDefaultFolder(OlDefaultFolders.olFolderInbox);
+                mailItems = inboxFolder.Items;
+                Console.WriteLine(mailItems.Count);
 
-        //        foreach (MailItem item in mailItems)
-        //        {
-        //            emailDetails = new Outlook();
-        //            emailDetails.EmailFrom = item.SenderEmailAddress;
-        //            emailDetails.EmailSub = item.Subject;
-        //            emailDetails.EmailBody = item.Body;
-        //            listEmailDetails.Add(emailDetails);
-        //            ReleaseComObject(item);
-        //        }
-        //    }
-        //    catch (System.Exception ex)
-        //    {
+                foreach (MailItem item in mailItems)
+                {
+                    var stringBuilder = new StringBuilder();
+                    stringBuilder.AppendLine("From: " + item.SenderEmailAddress);
+                    //stringBuilder.AppendLine("To: " + item.To);
+                    //stringBuilder.AppendLine("CC: " + item.CC);
+                    //stringBuilder.AppendLine("");
+                    //stringBuilder.AppendLine("Subject: " + item.Subject);
+                    //stringBuilder.AppendLine(item.Body);
+                    Console.WriteLine(stringBuilder);
 
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        ReleaseComObject(mailItems);
-        //        ReleaseComObject(inboxFolder);
-        //        ReleaseComObject(outlookNamespace);
-        //        ReleaseComObject(outlookApplication);
-        //    }
-        //    return listEmailDetails;
-        //}
+                    Marshal.ReleaseComObject(item);
+                }
+            }
 
-        //    private static void ReleaseComObject(object obj)
-        //    {
-        //        if (obj != null)
-        //        {
-        //            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-        //            obj = null;
-        //        }
+            catch (System.Exception e)
+            {
 
-        //    }
+                Console.WriteLine("{0} Exception caught: ", e);
+            }
+            finally
+            {
+                ReleaseComObject(mailItems);
+                ReleaseComObject(inboxFolder);
+                ReleaseComObject(outlookNamespace);
+                ReleaseComObject(outlookApplication);
+            }
+            Console.WriteLine("OK");
+            Console.ReadKey();
+            return ReadMailItems();
         }
+
+        private static void ReleaseComObject(object obj)
+        {
+            if (obj != null)
+            {
+                //System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+
+        }
+    }
     }
 

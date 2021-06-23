@@ -12,6 +12,7 @@ Scenario: GIR Image Verification
 	And Run spPRODDailyDownload procedure to Upload zip file in Images folder
 	And Verify the partnumber is present in the image folder
 	And Verify the partnumber is present in the image folder using query
+	And Verify the Uploaded Zip folder is not present in sftp path
 	And verify email Images Successfully loaded into the repository in outlook 
 
 
