@@ -26,6 +26,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public string datetime = "";
         public string imageResult = "";
         private string path;
+        private ConnectionStringSettings _connectionstring;
 
         ScenarioContext _scenariocontext;
 
@@ -38,98 +39,101 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Given(@"When I connect to the database to execute query to get the partNumber")]
         public void GivenWhenIConnectToTheDatabase()
         {
-            //string user = ConfigHelper.GetUserName();
-            String deviceID = ConfigurationManager.AppSettings["QAServerPath"];
+            string user = ConfigHelper.GetUserName();
+            string db = ConfigHelper.GetConnectionString();
+            //String deviceID = ConfigurationManager.AppSettings["QAServerPath"];
             result = dbhelper.GetPartNumber()[0];
+            ReadOutlook.ReadEmail();
+            
 
         }
 
         [When(@"I verify the partnumber images are not present in working directory")]
         public void WhenIVerifyThePartnumberImagesAreNotPresentInTheWorkingDirectory()
         {
-            Common rsult = new Common();
-            Assert.IsFalse(Convert.ToBoolean(rsult.ImageNotPresent(result)));
+            //Common rsult = new Common();
+            //Assert.IsFalse(Convert.ToBoolean(rsult.ImageNotPresent(result)));
         }
 
 
         [Then(@"Create a folder for images in local in the format payyyymmdd_hhmmss")]
         public void ThenCreateAFolderForImagesInLocal()
         {
-            datetime = dbhelper.getCurDateTime()[0];
-            fileOp.CreateFolderWithCurrentDateTime(datetime);
+            //datetime = dbhelper.getCurDateTime()[0];
+            //fileOp.CreateFolderWithCurrentDateTime(datetime);
         }
 
 
         [Then(@"Copy 24 files from parts folder to the newly created folder")]
         public void CopyFilesFromPartsToNewFolder()
         {
-            fileOp.CopyImagesToUse(datetime);
+            //fileOp.CopyImagesToUse(datetime);
         }
 
 
         [Then(@"Rename the files with the given partnumber")]
         public void RenameFilesWithPartNumber()
         {
-            fileOp.RenamingFiles(datetime);
+            //fileOp.RenamingFiles(datetime);
         }
 
 
         [Then(@"Zip the folder")]
         public void ZipCreatedFolder()
         {
-            fileOp.ZipFolder(datetime);
+            //fileOp.ZipFolder(datetime);
         }
 
 
         [Then(@"Find the sftp directory to upload the zip file")]
         public void ThenFindTheSftpDirectoryToUploadTheZipFile()
         {
-            dbe.DirectoryToUploadTheZipFile();
+            //dbe.DirectoryToUploadTheZipFile();
         }
 
 
         [Then(@"Copy the zip file to the ctsftp.gir2qc folder")]
         public void CopyZipFilesToGir2qcFolder()
         {
-            fileOp.CopyZipFilesToGir2qc(datetime);
+            //fileOp.CopyZipFilesToGir2qc(datetime);
         }
 
 
         [Then(@"Run spPRODDailyDownload procedure to Upload zip file in Images folder")]
         public void ThenRunSpPRODDailyDownloadProcedureToUploadZipFileInImagesFolder()
         {
-            dbe.RunSpPRODDailyDownloadProcedure();
+            //dbe.RunSpPRODDailyDownloadProcedure();
         }
 
         [Then(@"Verify the partnumber is present in the image folder")]
         public void VerifyPartNumberPresentInImages()
         {
 
-            Common rsult = new Common();
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(result)));
+            //Common rsult = new Common();
+            //Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(result)));
         }
 
         [Then(@"Verify the partnumber is present in the image folder using query")]
         public void ThenVerifyThePartnumberIsPresentInTheImageFolderUsingQuery()
         {
-            Common rsult = new Common();
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(result)));
+            //Common rsult = new Common();
+            //Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(result)));
 
         }
 
         [Then(@"Verify the Uploaded Zip folder is not present in sftp path")]
         public void ThenVerifyTheUploadedFolderIsNotPresentInSftpPath()
         {
-            Common rsult = new Common();
-            Assert.IsTrue(rsult.FileNotPresentInSftp(datetime));
+            //Common rsult = new Common();
+            //Assert.IsTrue(rsult.FileNotPresentInSftp(datetime));
 
         }
 
         [Then(@"verify email Images Successfully loaded into the repository in outlook")]
         public void ThenVerifyEmailInOutlook()
         {
-            Outlook olk = new Outlook();
-            olk.ReadMailItems();
+            //Outlook olk = new Outlook();
+            //olk.ReadMailItems();
 
         }
 

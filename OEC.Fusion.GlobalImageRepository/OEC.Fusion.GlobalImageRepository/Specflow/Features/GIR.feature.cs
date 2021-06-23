@@ -153,7 +153,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Verify the partnumber is present in the image folder using query", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("Verify the Uploaded folder is not present in sftp path", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Verify the Uploaded Zip folder is not present in sftp path", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
  testRunner.And("verify email Images Successfully loaded into the repository in outlook", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

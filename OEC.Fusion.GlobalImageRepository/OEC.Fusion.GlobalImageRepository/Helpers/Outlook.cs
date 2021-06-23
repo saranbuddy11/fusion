@@ -12,22 +12,15 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
 {
     public class Outlook
     {
-        //Sub: Global Image Repository - Upload Part Attribute(s) data not available.
-        //From: ford-datadstr@clifford-thames.com
-        //body:Dear Ford Admin,
-        //Part attribute data is not available for part numbers listed in the attached CSV file.
-        //Ford Image Repository Team
-
-
         //Sub: Images Successfully loaded into the repository
         //From: Data Distribution <ford-datadstr@clifford-thames.com>
         //Body: Dear Ford Admin, 
-        /*Zip File Name = pa09062021172720.zip
-        Upload Username = GIR2CC
-        Number of images loaded = 24 
-        Region = NA
-        Thank you,
-        Ford Data Distribution Team.*/
+        //Zip File Name = pa09062021172720.zip
+        //Upload Username = GIR2CC
+        //Number of images loaded = 24 
+        //Region = NA
+        //Thank you,
+        //Ford Data Distribution Team.
 
         public string EmailFrom { get; set; }
 

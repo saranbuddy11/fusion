@@ -40,7 +40,6 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void RenamingFiles(string datetime)
         {
-            //string datetime = dbhelper.getCurDateTime()[0];
             String result = dbhelper.GetPartNumber()[0];
             Console.WriteLine(result);
             DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\"+datetime+"\\");
@@ -50,6 +49,19 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
                 File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", result));
             }
         }
+
+        public void RenamingFilesWithUsedPN(string datetime)
+        {
+            String resultAU = dbhelper.GetPartNumberAlreadyUsed()[0];
+            Console.WriteLine(resultAU);
+            DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\" + datetime + "\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", resultAU));
+            }
+        }
+
         public void ZipFolder(string datetime)
         {
             //string datetime = dbhelper.getCurDateTime()[0];
