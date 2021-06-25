@@ -15,23 +15,30 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             var builder = new ConfigurationBuilder().SetBasePath(System.AppContext.BaseDirectory).AddJsonFile("appSettings.json", optional: true, reloadOnChange: true); return builder.Build();
         }
 
-        public static string GetUserName()
+        public static string GetEmail()
         {
-        return GetConfig()["username"];
+        return GetConfig()["email"];
             
         //    get { return ConfigurationManager.ConnectionStrings["GlobalImageRepository"].ConnectionString; }
         }
-        
-
-
-
-        public static string GetConnectionString()
+        public static string GetPassword()
         {
-            return GetConfig()["DefaultConnection"];
+            return GetConfig()["password"];
         }
+            public static string GetDefaultConnection()
+        {
+            return GetConfig()["ConnectionStrings:DefaultConnection"];
+        }
+
+        public static string Getname()
+        {
+            return GetConfig()["ConnectionStrings:name"];
+        }
+
+
     }
 }
-}
+
 
 
 

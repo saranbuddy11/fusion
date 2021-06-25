@@ -10,8 +10,8 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
     public class DBHelper 
     {
         private readonly DAL dal;
-        private readonly string dsn = "Data Source=UQWDB023.qa.oec.local;Initial Catalog=GlobalImageRepository;Integrated Security=True";
-        //private readonly string dsn = ConfigHelper.DBConnectionString;
+        //private readonly string dsn = "Data Source=UQWDB023.qa.oec.local;Initial Catalog=GlobalImageRepository;Integrated Security=True";
+        private readonly string dsn = ConfigHelper.GetDefaultConnection();
         // GIRSteps gir = new GIRSteps();
         public string result="";
         public DBHelper()
