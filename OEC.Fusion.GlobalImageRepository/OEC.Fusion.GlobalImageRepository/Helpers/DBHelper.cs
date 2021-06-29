@@ -10,9 +10,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
     public class DBHelper 
     {
         private readonly DAL dal;
-        //private readonly string dsn = "Data Source=UQWDB023.qa.oec.local;Initial Catalog=GlobalImageRepository;Integrated Security=True";
         private readonly string dsn = ConfigHelper.GetDefaultConnection();
-        // GIRSteps gir = new GIRSteps();
         public string result="";
         public DBHelper()
         {
@@ -30,33 +28,32 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             {
                 results.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
             }
-            //String results = "MM1PZ16A550BA";
             return results;
         }
 
-        public List<String> getsFTPPath()
+        public List<String> GetsFTPPath()
         {
             var sb = new StringBuilder();
             sb.AppendLine($"declare @locPath varchar(500) = '' declare @sftpUserName varchar(50) = '' set @locPath = (SELECT TOP(1) LocationPath FROM [GlobalImageRepository].[config].[tblSYSLocation] where 1 = 1 and [LocationName] = 'SFTPPath') set @sftpUserName = (SELECT TOP(1) [ProviderSFTPUserName] FROM [GlobalImageRepository].[config].[tblFORDIllustrationProvider] where 1 = 1 and ProviderId = 2) select @locPath+@sftpUserName");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            List<String> sFTPpath = new List<string>();
+            List<String> sFTPPath = new List<string>();
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                sFTPpath.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
+                sFTPPath.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
             }
-            return sFTPpath;
+            return sFTPPath;
         }
 
-        public List<String> getCurDateTime()
+        public List<String> GetCurDateTime()
         {
-            
-        var sb = new StringBuilder();
+            //Pulls the server current date and time in the format payyyy-mm-dd_hhmmss
+
+            var sb = new StringBuilder();
             sb.AppendLine($"declare @curDateTime varchar(19) set @curDateTime = convert(varchar, getdate(), 120) select @curDateTime select 'pa' + SUBSTRING(@curDateTime, 1, 10) + '_' + SUBSTRING(@curDateTime, 12, 2) + SUBSTRING(@curDateTime, 15, 2) + SUBSTRING(@curDateTime, 18, 2)");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
             List<String> curDateTime = new List<string>();
-           // curDateTime.Add(ds.Tables[1].Rows[1][0].ToString().Trim());
             for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
             {
                 curDateTime.Add(ds.Tables[1].Rows[i][0].ToString().Trim());
@@ -66,10 +63,6 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
 
         public List<string> VerifyImagesPresentInFolder(string result)
         {
-            
-            //string PN = results[0];
-            //string PN = GetPartNumber()[0];
-            //String PN = "MM1PZ16A550BA";
             var sb = new StringBuilder();
             sb.AppendLine($"select Count(1) from [GlobalImageRepository].[import].[tblIMGImageListPersisted]  ilp where 1 = 1 and ilp.ImageView like '360-%' and ilp.PartNumber = '" +result+ "'");
             var sql = sb.ToString();
@@ -77,8 +70,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             List<String> verifyImages = new List<String>();
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-            // verifyImages = ds.Tables[0].Rows[0][0].ToString().Trim();
-            verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
+                verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
             }
             return verifyImages;
         }
@@ -86,7 +78,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
         public List<String> GetPartNumberAlreadyUsed()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"select top 1 pp.[PartNumber] FROM[GlobalImageRepository].[import].[tblPRTPartCPIPersisted] pp left join[GlobalImageRepository].[import].[tblIMGImageListPersisted] im ON pp.PartId = im.PartId where 1 = 1 and im.PartId is NUll and pp.PartTypeId = 1 and pp.CPIRegionId = 2 order by pp.PartId desc");
+            sb.AppendLine($"select top 1 pp.[PartNumber] FROM[GlobalImageRepository].[import].[tblPRTPartCPIPersisted] pp inner join[GlobalImageRepository].[import].[tblIMGImageListPersisted] im ON pp.PartId = im.PartId where 1 = 1 and pp.PartTypeId = 1 and pp.CPIRegionId = 2 and left(im.ImageView, 3) = '360' order by pp.PartId , im.ImageId desc");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
             List<String> resultsAU = new List<String>();
@@ -94,20 +86,17 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             {
                 resultsAU.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
             }
-            //String results = "MM1PZ16A550BA";
             return resultsAU;
         }
 
-        public List<String> getDateTimeOfUsedPN()
+        public List<String> GetDateTimeOfUsedPN()
         {
-            //string partNumberAU = GetPartNumberAlreadyUsed()[0];
             string partNumberAU = "ML3Z2K004B";
             var sb = new StringBuilder();
             sb.AppendLine($"select MAX(im.UpdateDate) from [GlobalImageRepository].[import].[tblIMGImageListPersisted] im where 1 = 1 and im.PartNumber = '"+ partNumberAU + "'");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
             List<String> dateTimeUsedPN = new List<string>();
-            // curDateTime.Add(ds.Tables[1].Rows[1][0].ToString().Trim());
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 dateTimeUsedPN.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
@@ -115,14 +104,10 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return dateTimeUsedPN;
         }
 
-
-
-        public Object spPRODDailyDownload(string sprocName)
+        public Object SpPRODDailyDownload(string sprocName)
         {
-            
             var ds = dal.ExecuteStoredProcedureScalar(sprocName);
             Object results = new object();
-
             return ds;
         }
     }

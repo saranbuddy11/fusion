@@ -13,9 +13,9 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void DirectoryToUploadTheZipFile()
         {
-            string datetime = dbhelper.getCurDateTime()[0];
+            string datetime = dbhelper.GetCurDateTime()[0];
             string deviceID = ConfigurationManager.AppSettings["QAServerPath"];
-            string path = dbhelper.getsFTPPath()[0];
+            string path = dbhelper.GetsFTPPath()[0];
             String StoragePath = @path;
             Assert.IsTrue(true, StoragePath, @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc");
         }
@@ -23,7 +23,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         public void RunSpPRODDailyDownloadProcedure()
         {
             String sprocedure = "[GlobalImageRepository].[dbo].[spPRODDailyDownload]";
-            dbhelper.spPRODDailyDownload(sprocedure);
+            dbhelper.SpPRODDailyDownload(sprocedure);
         }
     }
 }

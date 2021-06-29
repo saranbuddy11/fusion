@@ -113,8 +113,5 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             }
             return returnValue;
         }
-
-
-
     }
 }

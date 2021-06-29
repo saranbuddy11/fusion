@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OEC.Fusion.GlobalImageRepository.Actions;
 using OEC.Fusion.GlobalImageRepository.Helpers;
 using OEC.Fusion.GlobalImageRepository.PageObjects;
 using System;
@@ -18,7 +17,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
     [Binding]
     public class GIRSteps
     {
-        String subdir { get; set; }
         public string StoragePath { get; private set; }
         FileOperations fileOp = new FileOperations();
         private DBHelper dbhelper = new DBHelper();
@@ -26,122 +24,93 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public string result = "";
         public string datetime = "";
         public string imageResult = "";
-        private string path;
-        private ConnectionStringSettings _connectionstring;
+        
 
-        ScenarioContext _scenariocontext;
-
-
-        /*public GIRSteps(ScenarioContext scenarioContext)
-        {
-            _scenariocontext = scenarioContext;
-        }*/
-
-        [Given(@"When I connect to the database to execute query to get the partNumber")]
+        [Given(@"When I connect to the database and execute query to get the non used partNumber")]
         public void GivenWhenIConnectToTheDatabase()
         {
-
             string db = ConfigHelper.GetDefaultConnection();
-            //String deviceID = ConfigurationManager.AppSettings["QAServerPath"];
             result = dbhelper.GetPartNumber()[0];
-            //Console.WriteLine(result);
-            //ReadOutlook.ReadEmail();
-
-
         }
 
-        [When(@"I verify the partnumber images are not present in working directory")]
-        public void WhenIVerifyThePartnumberImagesAreNotPresentInTheWorkingDirectory()
+        [When(@"I verify the partnumber images are not present in Image directory")]
+        public void WhenIVerifyThePartnumberImagesAreNotPresentInImageDirectory()
         {
             Common rsult = new Common();
             Assert.IsFalse(Convert.ToBoolean(rsult.ImageNotPresent(result)));
         }
 
-
-        [Then(@"Create a folder for images in local in the format payyyymmdd_hhmmss")]
-        public void ThenCreateAFolderForImagesInLocal()
+        [Then(@"Create a folder for in local directory with format payyyy-mm-dd_hhmmss")]
+        public void ThenCreateAFolderInLocal()
         {
-            datetime = dbhelper.getCurDateTime()[0];
+            //Pulls the server current date and time in the format payyyy-mm-dd_hhmmss
+            datetime = dbhelper.GetCurDateTime()[0];
             fileOp.CreateFolderWithCurrentDateTime(datetime);
         }
 
-
-        [Then(@"Copy 24 files from parts folder to the newly created folder")]
+        [Then(@"Copy 24 image files from ImagesToUse folder to the newly created folder")]
         public void CopyFilesFromPartsToNewFolder()
         {
             fileOp.CopyImagesToUse(datetime);
         }
 
-
-        [Then(@"Rename the files with the given partnumber")]
+        [Then(@"Rename the files with the partnumber in the format PN-360-01")]
         public void RenameFilesWithPartNumber()
         {
             fileOp.RenamingFiles(datetime);
         }
 
-
-        [Then(@"Zip the folder")]
+        [Then(@"Zip created folder")]
         public void ZipCreatedFolder()
         {
             fileOp.ZipFolder(datetime);
         }
 
-
-        [Then(@"Find the sftp directory to upload the zip file")]
+        [Then(@"Find sftp directory to upload the zip file")]
         public void ThenFindTheSftpDirectoryToUploadTheZipFile()
         {
             dbe.DirectoryToUploadTheZipFile();
         }
 
-
-        [Then(@"Copy the zip file to the ctsftp.gir2qc folder")]
+        [Then(@"Copy zip file to the ctsftp.gir2qc directory")]
         public void CopyZipFilesToGir2qcFolder()
         {
             fileOp.CopyZipFilesToGir2qc(datetime);
         }
 
-
-        [Then(@"Run spPRODDailyDownload procedure to Upload zip file in Images folder")]
-        public void ThenRunSpPRODDailyDownloadProcedureToUploadZipFileInImagesFolder()
+        [Then(@"Run spPRODDailyDownload procedure to Upload zip file in Image directory")]
+        public void ThenRunSpPRODDailyDownloadProcedureToUploadZipFileInImageDirectory()
         {
             dbe.RunSpPRODDailyDownloadProcedure();
         }
 
-        [Then(@"Verify the partnumber is present in the image folder")]
-        public void VerifyPartNumberPresentInImages()
+        [Then(@"Verify uploaded images are present in the Image directory")]
+        public void VerifyUploadedImagesPresentInImageDirectory()
         {
-
             Common rsult = new Common();
             Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(result)));
         }
 
-        [Then(@"Verify the partnumber is present in the image folder using query")]
-        public void ThenVerifyThePartnumberIsPresentInTheImageFolderUsingQuery()
+        [Then(@"Verify uploaded images are present in the Image folder using query")]
+        public void ThenVerifyTheUploadedImagesIsPresentInTheImageDirectoryUsingQuery()
         {
             Common rsult = new Common();
             Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(result)));
-
         }
 
-        [Then(@"Verify the Uploaded Zip folder is not present in sftp path")]
-        public void ThenVerifyTheUploadedFolderIsNotPresentInSftpPath()
+        [Then(@"Verify the created zip file is removed from sftp path")]
+        public void ThenVerifyTheZipFileRemovedFromSftpPath()
         {
             Common rsult = new Common();
             Assert.IsTrue(rsult.FileNotPresentInSftp(datetime));
 
         }
 
-        [Then(@"verify email Images Successfully loaded into the repository in outlook")]
-        public void ThenVerifyEmailInOutlook()
+        [Then(@"Verify Images Successfully loaded into the repository mail in outlook")]
+        public void ThenVerifyUploadedSuccessfullEmailInOutlook()
         {
             Thread.Sleep(30000);
-            datetime = dbhelper.getCurDateTime()[0];
             ReadOutlook.ReadEmail(datetime);
         }
-
-
-
-
-
     }
 }

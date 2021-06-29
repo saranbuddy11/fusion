@@ -17,15 +17,15 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
 
         public static string GetEmail()
         {
-        return GetConfig()["email"];
-            
-        //    get { return ConfigurationManager.ConnectionStrings["GlobalImageRepository"].ConnectionString; }
+            return GetConfig()["email"];
         }
+
         public static string GetPassword()
         {
             return GetConfig()["password"];
         }
-            public static string GetDefaultConnection()
+
+        public static string GetDefaultConnection()
         {
             return GetConfig()["ConnectionStrings:DefaultConnection"];
         }

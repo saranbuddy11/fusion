@@ -16,27 +16,34 @@ namespace OEC.Fusion.GlobalImageRepository
         public string partNum = "";
         public string result = "";
         public string datetime = "";
+
         public Boolean ImageNotPresent(string result)
         {
-            Console.WriteLine(result);
             bool rslt = false;
             for (int i = 1; i <= 24; i++)
             {
+                //Path of JPG anf JPEG files in Image directory
 
                 string pathJPG = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
                 string pathJPEG = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
+
                 if (i < 10)
                 {
-                    //To change the integer from 1 to 01 upto 09
+
+                    //add 1 to 9 with the path and to change the integer from 1 to 01 upto 09
                     //1 => the number of precision
+
                     int decimalLength = i.ToString("D").Length + 1;
                     string prefix = i.ToString("D" + decimalLength.ToString());
                     pathJPG = pathJPG + prefix + ".jpg";
                     pathJPEG = pathJPEG + prefix + ".jpeg";
-
+                    
                     try
                     {
                         bool a = (!File.Exists(pathJPG) && !File.Exists(pathJPEG));
+
+                        //Images are not present in the Image directory
+
                         Assert.IsTrue(!File.Exists(pathJPG) || !File.Exists(pathJPEG));
                         rslt = false;
                     }
@@ -45,7 +52,6 @@ namespace OEC.Fusion.GlobalImageRepository
                         rslt = true;
                         break;
                     }
-
                 }
                 else
                 {
@@ -76,8 +82,10 @@ namespace OEC.Fusion.GlobalImageRepository
                 string path = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
                 if (i < 10)
                 {
+
                     //To change the integer from 1 to 01 upto 09
                     //1 => the number of precision
+
                     int decimalLength = i.ToString("D").Length + 1;
                     string prefix = i.ToString("D" + decimalLength.ToString());
                     path = path + prefix + ".jpg";
@@ -91,7 +99,6 @@ namespace OEC.Fusion.GlobalImageRepository
                         rslt = false;
                         break;
                     }
-
                 }
                 else
                 {

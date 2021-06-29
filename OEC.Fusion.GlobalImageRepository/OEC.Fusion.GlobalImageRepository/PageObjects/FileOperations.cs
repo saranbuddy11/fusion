@@ -11,12 +11,9 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
     {
         private DBHelper dbhelper = new DBHelper();
         public string datetime = "";
-        
-    
 
         public void CreateFolderWithCurrentDateTime(string dateTime)
         {            
-
             String dir = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\";
             if (!Directory.Exists(dir))
             {
@@ -41,7 +38,6 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         public void RenamingFiles(string datetime)
         {
             String result = dbhelper.GetPartNumber()[0];
-            Console.WriteLine(result);
             DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\"+datetime+"\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
@@ -64,20 +60,17 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void ZipFolder(string datetime)
         {
-            //string datetime = dbhelper.getCurDateTime()[0];
             ZipFile.CreateFromDirectory(@"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + datetime + "", @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + datetime + ".zip");
         }
 
         public void CopyZipFilesToGir2qc(string datetime)
         {
-            //string datetime = dbhelper.getCurDateTime()[0];
-            String src = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + datetime + ".zip";
-            String tgt = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\" + datetime + ".zip";
-
-            string tgtDirectory = Path.GetDirectoryName(tgt);
-            if (File.Exists(src) && Directory.Exists(tgtDirectory))
+            string sourceFile = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + datetime + ".zip";
+            string targetDir = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\" + datetime + ".zip";
+            string tgtDirectory = Path.GetDirectoryName(targetDir);
+            if (File.Exists(sourceFile) && Directory.Exists(tgtDirectory))
             {
-                File.Copy(src, tgt);
+                File.Copy(sourceFile, targetDir);
             }
         }
 
