@@ -89,9 +89,8 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return resultsAU;
         }
 
-        public List<String> GetDateTimeOfUsedPN()
+        public List<String> GetDateTimeOfUsedPN(string partNumberAU)
         {
-            string partNumberAU = "ML3Z2K004B";
             var sb = new StringBuilder();
             sb.AppendLine($"select MAX(im.UpdateDate) from [GlobalImageRepository].[import].[tblIMGImageListPersisted] im where 1 = 1 and im.PartNumber = '"+ partNumberAU + "'");
             var sql = sb.ToString();

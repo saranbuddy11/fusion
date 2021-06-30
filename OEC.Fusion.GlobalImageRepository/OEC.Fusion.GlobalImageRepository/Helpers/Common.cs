@@ -74,8 +74,6 @@ namespace OEC.Fusion.GlobalImageRepository
 
         public Boolean ImagePresent(string result)
         {
-
-
             bool rslt = true;
             for (int i = 1; i <= 24; i++)
             {
@@ -112,10 +110,12 @@ namespace OEC.Fusion.GlobalImageRepository
                     {
                         rslt = false;
                         break;
+
                     }
                 }
             }
-            return rslt;
+                return rslt;
+            
         }
 
         public Boolean ImageVerification(String result)
@@ -140,6 +140,17 @@ namespace OEC.Fusion.GlobalImageRepository
                 notPresent = true;
             }
             return notPresent;
+        }
+
+        public void DateTimeVerification(string dateTimeUsedPN, string partNumAU)
+        {
+             String reUploadedDateTime = dBHelper.GetDateTimeOfUsedPN(partNumAU)[0];
+            //return 1 if 1st value is greater than the second value
+
+            if (string.Compare(reUploadedDateTime,dateTimeUsedPN)==1)
+            {
+                Assert.IsTrue(true);
+            }
         }
     }
 }

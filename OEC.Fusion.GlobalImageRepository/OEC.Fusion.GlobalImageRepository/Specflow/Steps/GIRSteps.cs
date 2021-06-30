@@ -23,24 +23,30 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         private DBexeution dbe = new DBexeution();
         public string result = "";
         public string datetime = "";
-        public string imageResult = "";
-        
+        public string partNumAU = "";
+        public string dateTimeUsedPN = "";
+                
 
-        [Given(@"When I connect to the database and execute query to get the non used partNumber")]
+        [Given(@"When I connect to the database")]
         public void GivenWhenIConnectToTheDatabase()
         {
             string db = ConfigHelper.GetDefaultConnection();
+        }
+
+        [When(@"I execute query to get the non used partNumber")]
+        public void WhenIExecuteQueryToGetTheNonUsedPartNumber()
+        {
             result = dbhelper.GetPartNumber()[0];
         }
 
-        [When(@"I verify the partnumber images are not present in Image directory")]
-        public void WhenIVerifyThePartnumberImagesAreNotPresentInImageDirectory()
+        [Then(@"I verify the partnumber images are not present in Image directory")]
+        public void ThenIVerifyThePartnumberImagesAreNotPresentInImageDirectory()
         {
             Common rsult = new Common();
             Assert.IsFalse(Convert.ToBoolean(rsult.ImageNotPresent(result)));
         }
 
-        [Then(@"Create a folder for in local directory with format payyyy-mm-dd_hhmmss")]
+        [Then(@"Create a folder in local directory with format payyyy-mm-dd_hhmmss")]
         public void ThenCreateAFolderInLocal()
         {
             //Pulls the server current date and time in the format payyyy-mm-dd_hhmmss
@@ -112,5 +118,46 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             Thread.Sleep(30000);
             ReadOutlook.ReadEmail(datetime);
         }
+
+        [When(@"I execute query to get already used partNumber")]
+        public void IExecuteQueryToGetAlreadyUsedPartNumber()
+        {
+            partNumAU = dbhelper.GetPartNumberAlreadyUsed()[0];
+        }
+
+        [Then(@"I verify the partnumber image files are present in Image directory")]
+        public void ThenIVerifyThePartnumberImageFilesArePresentInImageDirectory()
+        {
+            Common rsult = new Common();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+        }
+
+        [Then(@"Get the latest date and time attribute of the images present in Image directory")]
+        public void ThenGetTheLatestDateAndTimeAttributeOfTheImagesPresentInImageDirectory()
+        {
+            dateTimeUsedPN = dbhelper.GetDateTimeOfUsedPN(partNumAU)[0];
+        }
+
+        [Then(@"Verify re-uploaded images are present in the Image directory")]
+        public void VerifyReUploadedImagesPresentInImageDirectory()
+        {
+            Common rsult = new Common();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+        }
+
+        [Then(@"Verify re-uploaded images are present in the Image folder using query")]
+        public void ThenVerifyTheReUploadedImagesIsPresentInTheImageDirectoryUsingQuery()
+        {
+            Common rsult = new Common();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU)));
+        }
+
+        [Then(@"verify the Date and time attribute of the newly uploaded images id greater than the old images")]
+        public void ThenVerifyTheDateAndTimeAttributeOfTheNewlyUploadedImagesIdGreaterThanTheOldImages()
+        {
+            Common rsult = new Common();
+            rsult.DateTimeVerification(dateTimeUsedPN,partNumAU);
+        }
+
     }
 }
