@@ -23,7 +23,7 @@ Scenario: Reload proper 24 of 360 type images that has 360 images assigned alrea
 	And Get the latest date and time attribute of the images present in Image directory
 	And Create a folder in local directory with format payyyy-mm-dd_hhmmss
 	And Copy 24 image files from ImagesToUse folder to the newly created folder
-	And Rename the files with the partnumber in the format PN-360-01
+	And Rename the files with already used partnumber in the format PN-360-01
 	And Zip created folder
 	And Find sftp directory to upload the zip file
 	And Copy zip file to the ctsftp.gir2qc directory

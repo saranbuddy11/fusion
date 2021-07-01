@@ -35,9 +35,9 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             }
         }
 
-        public void RenamingFiles(string datetime)
+        public void RenamingFiles(string datetime,string result)
         {
-            String result = dbhelper.GetPartNumber()[0];
+            //String result = dbhelper.GetPartNumber()[0];
             DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\"+datetime+"\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
