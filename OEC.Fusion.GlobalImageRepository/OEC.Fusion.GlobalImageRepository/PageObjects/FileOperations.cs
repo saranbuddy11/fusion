@@ -46,6 +46,16 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             }
         }
 
+        public void RenamingFilesNonExistingPN(string datetime, string NonexistPartNumber)
+        {
+            DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\" + datetime + "\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", NonexistPartNumber));
+            }
+        }
+
         public void RenamingFilesWithUsedPN(string datetime)
         {
             String resultAU = dbhelper.GetPartNumberAlreadyUsed()[0];

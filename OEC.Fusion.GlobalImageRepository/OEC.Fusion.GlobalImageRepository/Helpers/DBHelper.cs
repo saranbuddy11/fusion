@@ -103,6 +103,20 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return dateTimeUsedPN;
         }
 
+        public List<String> VerifyNonExistingPN()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"SELECT COUNT(1) FROM[GlobalImageRepository].[import].[tblPRTPartCPIPersisted] where 1 = 1 and[PartNumber] = 'a1b2c3d4e5f6g7h8i9j0'");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            List<String> nonExistingPN = new List<string>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                nonExistingPN.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
+            }
+            return nonExistingPN;
+        }
+
         public Object SpPRODDailyDownload(string sprocName)
         {
             var ds = dal.ExecuteStoredProcedureScalar(sprocName);

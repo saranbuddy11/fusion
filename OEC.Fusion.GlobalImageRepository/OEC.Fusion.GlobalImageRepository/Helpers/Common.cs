@@ -16,6 +16,7 @@ namespace OEC.Fusion.GlobalImageRepository
         public string partNum = "";
         public string result = "";
         public string datetime = "";
+        public string NonexistPartNumber = "";
 
         public Boolean ImageNotPresent(string result)
         {
@@ -146,12 +147,17 @@ namespace OEC.Fusion.GlobalImageRepository
         {
              String reUploadedDateTime = dBHelper.GetDateTimeOfUsedPN(partNumAU)[0];
             //return 1 if 1st value is greater than the second value
-
-            if (string.Compare(reUploadedDateTime,dateTimeUsedPN)==1)
-            {
-                Assert.IsTrue(true);
-            }
+           
+            Assert.IsTrue(string.Compare(reUploadedDateTime, dateTimeUsedPN) == 1);
+            
         }
+
+        public void GetNonExistingPN()
+        {
+            NonexistPartNumber = "a1b2c3d4e5f6g7h8i9j0";
+            Assert.IsTrue(dBHelper.VerifyNonExistingPN()[0].Equals("0"));
+        }
+
     }
 }
 
