@@ -130,7 +130,6 @@ namespace OEC.Fusion.GlobalImageRepository
             }
             else
                 output = false;
-            //Assert.AreEqual(expectedValue, res);
             return output;
         }
 
@@ -152,8 +151,6 @@ namespace OEC.Fusion.GlobalImageRepository
         public void DateTimeVerification(string dateTimeUsedPN, string partNumAU)
         {
              String reUploadedDateTime = dBHelper.GetDateTimeOfUsedPN(partNumAU)[0];
-            Console.WriteLine("dateTimeUsedPN is" + dateTimeUsedPN);
-            Console.WriteLine("reUploadedDateTime is" + reUploadedDateTime);
             //return 1 if 1st value is greater than the second value
 
             Assert.IsTrue(string.Compare(reUploadedDateTime,dateTimeUsedPN) == 1);

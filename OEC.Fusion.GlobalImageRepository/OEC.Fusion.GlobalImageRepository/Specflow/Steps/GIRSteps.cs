@@ -188,7 +188,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify Global Image Repository - Image Import Failed mail in outlook")]
         public void ThenVerifyGlobalImageRepository_ImageImportFailedMailInOutlook()
         {
-            Console.WriteLine("Test");
+            Thread.Sleep(30000);
+            ReadOutlook.ReadEmail(datetime);
         }
 
     }

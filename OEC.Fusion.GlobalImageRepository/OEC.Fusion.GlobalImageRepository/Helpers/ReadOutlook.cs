@@ -56,10 +56,14 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
                     }
                     else
                     {
-                        if (subject.Contains("Global Image Repository - Image Import Failed"))
+                        if (sub.Contains("Global Image Repository - Image Import Failed"))
                         {
+                            body = email.Body;
                             if (body.Contains("Unable to upload image(s)"))
-                            Assert.Fail("Images upload failed");                            
+                            {
+                                Assert.IsTrue(body.Contains("Image name improperly formatted"));
+                                Assert.Fail("Images upload failed");
+                            }                                                        
                         }
                         x++;
                         if(x==5)
