@@ -47,13 +47,3 @@ Scenario: Upload 24 images of 360 type for non-existing part number
 	And Verify the partnumber images are not present in Image directory
 	And Verify the partnumber images are not present in Image directory using Query
 	And Verify Global Image Repository - Image Import Failed mail in outlook 
-
-
-
-
-
-
-
-
-
-

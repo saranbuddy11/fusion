@@ -16,7 +16,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             ExchangeService _service;
             try
             {
-                 _service = new ExchangeService
+                _service = new ExchangeService
                 {
                     Credentials = new WebCredentials(ConfigHelper.GetEmail(), ConfigHelper.GetPassword())
                 };
@@ -27,9 +27,9 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
                 return;
             }
 
-            // This is the office365 webservice URL
+            // This is the office365 webservice URL            
             _service.Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx");
-
+            
             //Verifying email subject and content
 
             try
