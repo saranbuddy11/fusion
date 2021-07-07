@@ -110,13 +110,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
 
         }
 
-        [Then(@"Verify Images Successfully loaded into the repository mail in outlook")]
-        public void ThenVerifyUploadedSuccessfullEmailInOutlook()
-        {
-            Thread.Sleep(30000);
-            ReadOutlook.ReadEmail(datetime);
-        }
-
         [When(@"I execute query to get already used partNumber")]
         public void IExecuteQueryToGetAlreadyUsedPartNumber()
         {
@@ -183,13 +176,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenVerifyThePartnumberImagesAreNotPresentInImageDirectoryUsingQuery()
         {
             Assert.IsFalse(rsult.ImageVerification(NonexistPartNumber));
-        }
-
-        [Then(@"Verify Global Image Repository - Image Import Failed mail in outlook")]
-        public void ThenVerifyGlobalImageRepository_ImageImportFailedMailInOutlook()
-        {
-            Thread.Sleep(30000);
-            ReadOutlook.ReadEmail(datetime);
         }
 
     }

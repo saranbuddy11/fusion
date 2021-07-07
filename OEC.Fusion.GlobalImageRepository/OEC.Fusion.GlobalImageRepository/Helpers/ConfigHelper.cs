@@ -35,7 +35,27 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return GetConfig()["ConnectionStrings:name"];
         }
 
+        public static string GirPath()
+        {
+            return GetConfig()["gir2qcPath"];
+        }
+        public static string ImagesPath()
+        {
+            return GetConfig()["ImagesPath"];
+        }
+        public static string NonExistingPartNo()
+        {
+            return GetConfig()["NonExistingPartNo"];
+        }
+        public static string TestAutomationPath()
+        {
+            return GetConfig()["TestAutomationPath"];
+        }
+        public static string ImagesToUsePath()
+        {
+            return GetConfig()["ImagesToUsePath"];
 
+        }
     }
 }
 

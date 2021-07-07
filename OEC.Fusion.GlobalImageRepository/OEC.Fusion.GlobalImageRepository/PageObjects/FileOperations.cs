@@ -14,19 +14,19 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void CreateFolderWithCurrentDateTime(string dateTime)
         {            
-            String dir = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\";
+            String dir = ConfigHelper.TestAutomationPath();
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
-            string subdir = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + dateTime + "";
+            string subdir = ConfigHelper.TestAutomationPath() + dateTime + "";
             Directory.CreateDirectory(subdir);
         }
 
         public void CopyImagesToUse(string datetime)
         {   
-            String source = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\ImagesToUse";
-            String target = @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\"+ datetime +"\\";
+            String source = ConfigHelper.ImagesToUsePath();
+            String target = ConfigHelper.TestAutomationPath() + datetime +"\\";
             String[] files = Directory.GetFiles(source);
             foreach (string fil in files)
             {
@@ -37,7 +37,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void RenamingFiles(string datetime,string result)
         {
-            DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\"+datetime+"\\");
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime+"\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
@@ -47,7 +47,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void RenamingFilesNonExistingPN(string datetime, string NonexistPartNumber)
         {
-            DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\" + datetime + "\\");
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath()+ datetime + "\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
@@ -58,7 +58,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         public void RenamingFilesWithUsedPN(string datetime)
         {
             String resultAU = dbhelper.GetPartNumberAlreadyUsed()[0];
-            DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\aiswarya\\" + datetime + "\\");
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
@@ -68,13 +68,13 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void ZipFolder(string datetime)
         {
-            ZipFile.CreateFromDirectory(@"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + datetime + "", @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + datetime + ".zip");
+            ZipFile.CreateFromDirectory(ConfigHelper.TestAutomationPath() + datetime + "", ConfigHelper.TestAutomationPath() + datetime + ".zip");
         }
 
         public void CopyZipFilesToGir2qc(string datetime)
         {
-            string sourceFile = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\aiswarya\" + datetime + ".zip";
-            string targetDir = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\" + datetime + ".zip";
+            string sourceFile = ConfigHelper.TestAutomationPath() + datetime + ".zip";
+            string targetDir = ConfigHelper.GirPath() + datetime + ".zip";
             string tgtDirectory = Path.GetDirectoryName(targetDir);
             if (File.Exists(sourceFile) && Directory.Exists(tgtDirectory))
             {

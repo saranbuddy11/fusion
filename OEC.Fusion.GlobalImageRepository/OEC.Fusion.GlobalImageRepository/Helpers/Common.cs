@@ -25,8 +25,8 @@ namespace OEC.Fusion.GlobalImageRepository
             {
                 //Path of JPG anf JPEG files in Image directory
 
-                string pathJPG = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
-                string pathJPEG = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
+                string pathJPG = ConfigHelper.ImagesPath() + result + "-360-";
+                string pathJPEG = ConfigHelper.ImagesPath() + result + "-360-";
 
                 if (i < 10)
                 {
@@ -78,7 +78,7 @@ namespace OEC.Fusion.GlobalImageRepository
             bool rslt = true;
             for (int i = 1; i <= 24; i++)
             {
-                string path = @"\\UQWDB023.qa.oec.local\Images\" + result + "-360-";
+                string path =  ConfigHelper.ImagesPath() + result + "-360-";
                 if (i < 10)
                 {
 
@@ -136,7 +136,7 @@ namespace OEC.Fusion.GlobalImageRepository
         public Boolean FileNotPresentInSftp(string datetime)
         {
             bool notPresent;
-            string path = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\";
+            string path = ConfigHelper.GirPath();
             if(path.Contains(datetime))
             {
                 notPresent = false;
@@ -159,7 +159,7 @@ namespace OEC.Fusion.GlobalImageRepository
 
         public void GetNonExistingPN()
         {
-            NonexistPartNumber = "a1b2c3d4e5f6g7h8i9j0";
+            NonexistPartNumber = ConfigHelper.NonExistingPartNo();
             Assert.IsTrue(dBHelper.VerifyNonExistingPN()[0].Equals("0"));
         }
 
