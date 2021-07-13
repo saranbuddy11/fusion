@@ -17,7 +17,8 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             string deviceID = ConfigurationManager.AppSettings["QAServerPath"];
             string path = dbhelper.GetsFTPPath()[0];
             String StoragePath = @path;
-            Assert.IsTrue(true, StoragePath, ConfigHelper.GirPath());
+            //Assert.IsTrue(true, StoragePath, ConfigHelper.GirPath());
+            Assert.IsTrue(true, StoragePath, @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\");
         }
 
         public void RunSpPRODDailyDownloadProcedure()

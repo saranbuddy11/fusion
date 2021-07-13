@@ -75,10 +75,14 @@ namespace OEC.Fusion.GlobalImageRepository
 
         public Boolean ImagePresent(string result)
         {
-            bool rslt = true;
+            bool rslt=false;
             for (int i = 1; i <= 24; i++)
             {
-                string path =  ConfigHelper.ImagesPath() + result + "-360-";
+                //string path =  @ConfigHelper.ImagesPath() + result + "-360-";
+                //string pathJPEG = @""+ConfigHelper.ImagesPath() + result + "-360-";
+                string path = @"\\UQWDB023.qa.oec.local\\Images\\"+result+"-360-";
+                string pathJPEG = @"\\UQWDB023.qa.oec.local\\Images\\" + result + "-360-";
+                //string a = ConfigHelper.ImagesPath() + result + "-360-";
                 if (i < 10)
                 {
 
@@ -88,28 +92,34 @@ namespace OEC.Fusion.GlobalImageRepository
                     int decimalLength = i.ToString("D").Length + 1;
                     string prefix = i.ToString("D" + decimalLength.ToString());
                     path = path + prefix + ".jpg";
+                    pathJPEG = pathJPEG + prefix + ".jpeg";
                     try
                     {
-                        Assert.IsTrue(File.Exists(path));
-                        rslt = true;
+                        //bool a = (File.Exists(path) || File.Exists(pathJPEG));
+
+                        //Images are not present in the Image directory
+
+                        Assert.IsFalse(!File.Exists(path) || !File.Exists(pathJPEG));
+                        rslt = false;
                     }
                     catch (Exception e)
                     {
-                        rslt = false;
+                        rslt = true;
                         break;
                     }
                 }
                 else
                 {
                     path = path + i + ".jpg";
+                    pathJPEG = pathJPEG + i + ".jpeg";
                     try
                     {
-                        Assert.IsTrue(File.Exists(path));
-                        rslt = true;
+                        Assert.IsFalse(!File.Exists(path) || !File.Exists(pathJPEG));
+                        rslt = false;
                     }
                     catch (Exception e)
                     {
-                        rslt = false;
+                        rslt = true;
                         break;
 
                     }
@@ -136,8 +146,9 @@ namespace OEC.Fusion.GlobalImageRepository
         public Boolean FileNotPresentInSftp(string datetime)
         {
             bool notPresent;
-            string path = ConfigHelper.GirPath();
-            if(path.Contains(datetime))
+            //string path = ConfigHelper.GirPath();
+            string path = @"\\UQWDB023.qa.oec.local\\\\test\\\\ctsftp.gir2qc\\";
+            if (path.Contains(datetime))
             {
                 notPresent = false;
             }
@@ -148,13 +159,20 @@ namespace OEC.Fusion.GlobalImageRepository
             return notPresent;
         }
 
-        public void DateTimeVerification(string dateTimeUsedPN, string partNumAU)
+        public Boolean DateTimeVerification(string dateTimeUsedPN, string partNumAU)
         {
+            bool dateTimeAttribute;
              String reUploadedDateTime = dBHelper.GetDateTimeOfUsedPN(partNumAU)[0];
             //return 1 if 1st value is greater than the second value
 
-            Assert.IsTrue(string.Compare(reUploadedDateTime,dateTimeUsedPN) == 1);
+            if(string.Compare(reUploadedDateTime,dateTimeUsedPN) == 1)
+            {
+                dateTimeAttribute = true;
+            }
             
+            else
+                dateTimeAttribute = false;
+            return dateTimeAttribute;
         }
 
         public void GetNonExistingPN()

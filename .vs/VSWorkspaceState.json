@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\OEC.Fusion.GlobalImageRepository",
+    "\\OEC.Fusion.GlobalImageRepository\\OEC.Fusion.GlobalImageRepository",
+    "\\OEC.Fusion.GlobalImageRepository\\OEC.Fusion.GlobalImageRepository\\Helpers",
+    "\\OEC.Fusion.GlobalImageRepository\\OEC.Fusion.GlobalImageRepository\\Specflow",
+    "\\OEC.Fusion.GlobalImageRepository\\OEC.Fusion.GlobalImageRepository\\Specflow\\Features"
+  ],
+  "SelectedNode": "\\OEC.Fusion.GlobalImageRepository\\OEC.Fusion.GlobalImageRepository\\Specflow\\Features\\GIR.feature",
+  "PreviewInSolutionExplorer": false
+}

@@ -19,20 +19,51 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             {
                 Directory.CreateDirectory(dir);
             }
-            string subdir = ConfigHelper.TestAutomationPath() + dateTime + "";
+            string subdir = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\TestAutomation\"+ dateTime;
+            //string path = ConfigHelper.TestAutomationPath();
+            //string subdir1 = path + dateTime + "test";
+            
             Directory.CreateDirectory(subdir);
+           // Directory.CreateDirectory(subdir1);
         }
 
         public void CopyImagesToUse(string datetime)
-        {   
-            String source = ConfigHelper.ImagesToUsePath();
+        {
+            String source = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\TestAutomation\ImagesToUse";
+            //String sourc = ConfigHelper.ImagesToUsePath();
             String target = ConfigHelper.TestAutomationPath() + datetime +"\\";
+            //String source = Path.GetFullPath(sourc).Replace(@"\\", @"\");
             String[] files = Directory.GetFiles(source);
             foreach (string fil in files)
             {
                 string fileName = Path.GetFileName(fil);
                 File.Copy(fil, target + fileName, true);
             }
+        }
+
+        public void CopyImageToUse(string datetime)
+        {
+            String source = @"\\UQWDB023.qa.oec.local\test\ctsftp.gir2qc\TestAutomation\ImagesToUse";
+            //String sourc = ConfigHelper.ImagesToUsePath();
+            //String target = @""+ ConfigHelper.TestAutomationPath() + datetime + "\\";
+            //String source = Path.GetFullPath(sourc).Replace(@"\\", @"\");
+            String target = @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\TestAutomation\\"+datetime+"\\";
+            String[] files = Directory.GetFiles(source);
+            int i;
+            for (i = 1; i <= 1; i++)
+            {
+
+                //string fileName = Path.GetFileName(files[0]);
+                string filePath = Path.GetFullPath(files[0]);
+                string fileName = Path.GetFileName(files[0]);
+                File.Copy(filePath, target + fileName, true);
+                //File.Copy(fil, target + fileName, true);
+            }
+            //foreach (string fil in files)
+            //{
+            //    string fileName = Path.GetFileName(fil);
+            //    File.Copy(fil, target + fileName, true);
+            //}
         }
 
         public void RenamingFiles(string datetime,string result)
@@ -47,7 +78,8 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void RenamingFilesNonExistingPN(string datetime, string NonexistPartNumber)
         {
-            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath()+ datetime + "\\");
+            //DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath()+ datetime + "\\");
+            DirectoryInfo d = new DirectoryInfo(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\TestAutomation\\"+ datetime+"\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
@@ -68,13 +100,17 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void ZipFolder(string datetime)
         {
-            ZipFile.CreateFromDirectory(ConfigHelper.TestAutomationPath() + datetime + "", ConfigHelper.TestAutomationPath() + datetime + ".zip");
+            //ZipFile.CreateFromDirectory(ConfigHelper.TestAutomationPath() + datetime + "", ConfigHelper.TestAutomationPath() + datetime + ".zip");
+            ZipFile.CreateFromDirectory(@"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\TestAutomation\\"+ datetime +"", @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\TestAutomation\\"+ datetime + ".zip");
+
         }
 
         public void CopyZipFilesToGir2qc(string datetime)
         {
-            string sourceFile = ConfigHelper.TestAutomationPath() + datetime + ".zip";
-            string targetDir = ConfigHelper.GirPath() + datetime + ".zip";
+            //string sourceFile = ConfigHelper.TestAutomationPath() + datetime + ".zip";
+            //string targetDir = ConfigHelper.GirPath() + datetime + ".zip";
+            string sourceFile = @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\TestAutomation\\"+datetime+".zip";
+            string targetDir = @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\"+ datetime+".zip";
             string tgtDirectory = Path.GetDirectoryName(targetDir);
             if (File.Exists(sourceFile) && Directory.Exists(tgtDirectory))
             {
