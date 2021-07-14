@@ -18,10 +18,10 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
     public class GIRSteps
     {
         public string StoragePath { get; private set; }
-        FileOperations fileOp = new FileOperations();
-        private DBHelper dbhelper = new DBHelper();
-        private DBexeution dbe = new DBexeution();
-        private Common rsult = new Common();
+        FileOperations fileOp;
+        private DBHelper dbhelper;
+        private DBexeution dbe;
+        private Common rsult;
         public string result = "";
         public string datetime = "";
         public string partNumAU = "";
@@ -32,6 +32,10 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public GIRSteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            dbhelper = new DBHelper();
+            dbe = new DBexeution();
+            rsult = new Common();
+            fileOp = new FileOperations();
         }
 
 
@@ -57,6 +61,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenCreateAFolderInLocal()
         {
             //Pulls the server current date and time in the format payyyy-mm-dd_hhmmss
+
             datetime = dbhelper.GetCurDateTime()[0];
             fileOp.CreateFolderWithCurrentDateTime(datetime);
         }
