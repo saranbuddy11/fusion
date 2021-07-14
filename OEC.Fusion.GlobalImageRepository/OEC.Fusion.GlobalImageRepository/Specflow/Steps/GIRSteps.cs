@@ -27,13 +27,18 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public string partNumAU = "";
         public string dateTimeUsedPN = "";
         public string NonexistPartNumber = "";
+        ScenarioContext _scenarioContext;
+
+        public GIRSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
 
 
         [Given(@"When I connect to the database")]
         public void GivenWhenIConnectToTheDatabase()
         {
             string db = ConfigHelper.GetDefaultConnection();
-            string test = ConfigHelper.TestAutomationPath();
         }
 
         [When(@"I execute query to get the non used partNumber")]

@@ -78,11 +78,8 @@ namespace OEC.Fusion.GlobalImageRepository
             bool rslt=false;
             for (int i = 1; i <= 24; i++)
             {
-                //string path =  @ConfigHelper.ImagesPath() + result + "-360-";
-                //string pathJPEG = @""+ConfigHelper.ImagesPath() + result + "-360-";
-                string path = @"\\UQWDB023.qa.oec.local\\Images\\"+result+"-360-";
-                string pathJPEG = @"\\UQWDB023.qa.oec.local\\Images\\" + result + "-360-";
-                //string a = ConfigHelper.ImagesPath() + result + "-360-";
+                string path =  ConfigHelper.ImagesPath() + result + "-360-";
+                string pathJPEG = ConfigHelper.ImagesPath() + result + "-360-";
                 if (i < 10)
                 {
 
@@ -95,11 +92,9 @@ namespace OEC.Fusion.GlobalImageRepository
                     pathJPEG = pathJPEG + prefix + ".jpeg";
                     try
                     {
-                        //bool a = (File.Exists(path) || File.Exists(pathJPEG));
-
                         //Images are not present in the Image directory
 
-                        Assert.IsFalse(!File.Exists(path) || !File.Exists(pathJPEG));
+                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
                         rslt = false;
                     }
                     catch (Exception e)
@@ -114,7 +109,7 @@ namespace OEC.Fusion.GlobalImageRepository
                     pathJPEG = pathJPEG + i + ".jpeg";
                     try
                     {
-                        Assert.IsFalse(!File.Exists(path) || !File.Exists(pathJPEG));
+                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
                         rslt = false;
                     }
                     catch (Exception e)
@@ -146,8 +141,7 @@ namespace OEC.Fusion.GlobalImageRepository
         public Boolean FileNotPresentInSftp(string datetime)
         {
             bool notPresent;
-            //string path = ConfigHelper.GirPath();
-            string path = @"\\UQWDB023.qa.oec.local\\\\test\\\\ctsftp.gir2qc\\";
+            string path = ConfigHelper.GirPath();
             if (path.Contains(datetime))
             {
                 notPresent = false;
