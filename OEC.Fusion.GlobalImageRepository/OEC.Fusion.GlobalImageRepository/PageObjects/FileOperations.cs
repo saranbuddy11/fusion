@@ -19,12 +19,13 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             {
                 Directory.CreateDirectory(dir);
             }
-            string subdir = ConfigHelper.TestAutomationPath() + dateTime + "";
-            Directory.CreateDirectory(subdir);
+            string path = ConfigHelper.TestAutomationPath();
+            string subdir1 = path + dateTime;
+            Directory.CreateDirectory(subdir1);
         }
 
         public void CopyImagesToUse(string datetime)
-        {   
+        {
             String source = ConfigHelper.ImagesToUsePath();
             String target = ConfigHelper.TestAutomationPath() + datetime +"\\";
             String[] files = Directory.GetFiles(source);
@@ -32,6 +33,21 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             {
                 string fileName = Path.GetFileName(fil);
                 File.Copy(fil, target + fileName, true);
+            }
+        }
+
+        public void CopyImageToUse(string datetime)
+        {
+            String source = ConfigHelper.ImagesToUsePath();
+            string target = @""+ ConfigHelper.TestAutomationPath() + datetime + "\\";
+            String[] files = Directory.GetFiles(source);
+            int i;
+            for (i = 1; i <= 1; i++)
+            {
+
+                string filePath = Path.GetFullPath(files[0]);
+                string fileName = Path.GetFileName(files[0]);
+                File.Copy(filePath, target + fileName, true);
             }
         }
 
@@ -69,6 +85,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         public void ZipFolder(string datetime)
         {
             ZipFile.CreateFromDirectory(ConfigHelper.TestAutomationPath() + datetime + "", ConfigHelper.TestAutomationPath() + datetime + ".zip");
+
         }
 
         public void CopyZipFilesToGir2qc(string datetime)
@@ -81,8 +98,5 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
                 File.Copy(sourceFile, targetDir);
             }
         }
-
-        
-
     }
 }

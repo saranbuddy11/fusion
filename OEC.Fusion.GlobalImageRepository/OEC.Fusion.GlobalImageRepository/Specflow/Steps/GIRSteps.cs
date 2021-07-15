@@ -18,16 +18,26 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
     public class GIRSteps
     {
         public string StoragePath { get; private set; }
-        FileOperations fileOp = new FileOperations();
-        private DBHelper dbhelper = new DBHelper();
-        private DBexeution dbe = new DBexeution();
-        private Common rsult = new Common();
+        FileOperations fileOp;
+        private DBHelper dbhelper;
+        private DBexeution dbe;
+        private Common rsult;
         public string result = "";
         public string datetime = "";
         public string partNumAU = "";
         public string dateTimeUsedPN = "";
         public string NonexistPartNumber = "";
-                
+        ScenarioContext _scenarioContext;
+
+        public GIRSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+            dbhelper = new DBHelper();
+            dbe = new DBexeution();
+            rsult = new Common();
+            fileOp = new FileOperations();
+        }
+
 
         [Given(@"When I connect to the database")]
         public void GivenWhenIConnectToTheDatabase()
@@ -51,6 +61,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenCreateAFolderInLocal()
         {
             //Pulls the server current date and time in the format payyyy-mm-dd_hhmmss
+
             datetime = dbhelper.GetCurDateTime()[0];
             fileOp.CreateFolderWithCurrentDateTime(datetime);
         }
@@ -64,7 +75,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Rename the files with the partnumber in the format PN-360-01")]
         public void RenameFilesWithPartNumber()
         {
-            fileOp.RenamingFiles(datetime,result);
+            fileOp.RenamingFiles(datetime, result);
         }
 
         [Then(@"Zip created folder")]
@@ -94,7 +105,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify uploaded images are present in the Image directory")]
         public void VerifyUploadedImagesPresentInImageDirectory()
         {
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(result)));
+            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(result)));
         }
 
         [Then(@"Verify uploaded images are present in the Image folder using query")]
@@ -119,7 +130,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"I verify the partnumber image files are present in Image directory")]
         public void ThenIVerifyThePartnumberImageFilesArePresentInImageDirectory()
         {
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
         }
 
         [Then(@"Get the latest date and time attribute of the images present in Image directory")]
@@ -131,13 +142,13 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Rename the files with already used partnumber in the format PN-360-01")]
         public void RenameFilesWithAUPartNumber()
         {
-            fileOp.RenamingFiles(datetime,partNumAU);
+            fileOp.RenamingFiles(datetime, partNumAU);
         }
 
         [Then(@"Verify re-uploaded images are present in the Image directory")]
         public void VerifyReUploadedImagesPresentInImageDirectory()
         {
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
         }
 
         [Then(@"Verify re-uploaded images are present in the Image folder using query")]
@@ -146,11 +157,11 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU)));
         }
 
-        [Then(@"verify the Date and time attribute of the newly uploaded images id greater than the old images")]
-        public void ThenVerifyTheDateAndTimeAttributeOfTheNewlyUploadedImagesIdGreaterThanTheOldImages()
+        [Then(@"verify the Date and time attribute of the newly uploaded images is greater than the old images")]
+        public void ThenVerifyTheDateAndTimeAttributeOfTheNewlyUploadedImagesIsGreaterThanTheOldImages()
         {
 
-            rsult.DateTimeVerification(dateTimeUsedPN, partNumAU);
+            Assert.IsTrue(rsult.DateTimeVerification(dateTimeUsedPN, partNumAU));
         }
 
         [When(@"I execute query with non-existing partnumber and verify the partnumber does not exist in Images folder")]
@@ -176,6 +187,30 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenVerifyThePartnumberImagesAreNotPresentInImageDirectoryUsingQuery()
         {
             Assert.IsFalse(rsult.ImageVerification(NonexistPartNumber));
+        }
+
+        [Then(@"Copy only one image file from ImagesToUse folder to the newly created folder")]
+        public void ThenCopyOnlyOneImageFileFromImagesToUseFolderToTheNewlyCreatedFolder()
+        {
+            fileOp.CopyImageToUse(datetime);
+        }
+
+        [Then(@"verify the Date and time attribute of the newly uploaded images is not greater than the old images")]
+        public void ThenVerifyTheDateAndTimeAttributeOfTheNewlyUploadedImagesIsNotGreaterThanTheOldImages()
+        {
+            Assert.IsFalse(rsult.DateTimeVerification(dateTimeUsedPN, partNumAU));
+        }
+
+        [Then(@"Verify the partnumber images are present in Image directory")]
+        public void ThenVerifyThePartnumberImagesArePresentInImageDirectory()
+        {
+            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+        }
+
+        [Then(@"Verify the partnumber images are present in Image directory using Query")]
+        public void ThenVerifyThePartnumberImagesArePresentInImageDirectoryUsingQuery()
+        {
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU)));
         }
 
     }
