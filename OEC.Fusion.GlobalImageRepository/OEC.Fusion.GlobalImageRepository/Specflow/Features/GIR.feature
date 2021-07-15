@@ -1,6 +1,6 @@
 ﻿Feature: GIR
 
-Scenario: GIR Image Verification
+Scenario: 1 GIR Image Verification
 	Given When I connect to the database 
 	When I execute query to get the non used partNumber
 	Then I verify the partnumber images are not present in Image directory
@@ -16,7 +16,7 @@ Scenario: GIR Image Verification
 	And Verify the created zip file is removed from sftp path
 	 
 
-Scenario: Reload proper 24 of 360 type images that has 360 images assigned already
+Scenario: 2 Reload proper 24 of 360 type images that has 360 images assigned already
 	Given When I connect to the database 
 	When I execute query to get already used partNumber
 	Then I verify the partnumber image files are present in Image directory
@@ -34,7 +34,7 @@ Scenario: Reload proper 24 of 360 type images that has 360 images assigned alrea
 	And Verify the created zip file is removed from sftp path
 	 
 
-Scenario: Upload 24 images of 360 type for non-existing part number
+Scenario: 3 Upload 24 images of 360 type for non-existing part number
 	Given When I connect to the database
 	When I execute query with non-existing partnumber and verify the partnumber does not exist in Images folder
 	Then Create a folder in local directory with format payyyy-mm-dd_hhmmss
@@ -48,7 +48,7 @@ Scenario: Upload 24 images of 360 type for non-existing part number
 	And Verify the partnumber images are not present in Image directory using Query
 	And Verify the created zip file is removed from sftp path
 
-Scenario: Reload 1 image of 360 type images
+Scenario: 4 Reload 1 image of 360 type images
 	Given When I connect to the database
 	When I execute query to get already used partNumber
 	Then I verify the partnumber image files are present in Image directory

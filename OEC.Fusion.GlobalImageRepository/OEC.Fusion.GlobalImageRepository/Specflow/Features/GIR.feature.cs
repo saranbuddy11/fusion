@@ -92,13 +92,13 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("GIR Image Verification")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 GIR Image Verification")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void GIRImageVerification()
+        public virtual void _1GIRImageVerification()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GIR Image Verification", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1 GIR Image Verification", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -163,13 +163,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Reload proper 24 of 360 type images that has 360 images assigned already")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("2 Reload proper 24 of 360 type images that has 360 images assigned already")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void ReloadProper24Of360TypeImagesThatHas360ImagesAssignedAlready()
+        public virtual void _2ReloadProper24Of360TypeImagesThatHas360ImagesAssignedAlready()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reload proper 24 of 360 type images that has 360 images assigned already", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2 Reload proper 24 of 360 type images that has 360 images assigned already", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -241,13 +241,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload 24 images of 360 type for non-existing part number")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("3 Upload 24 images of 360 type for non-existing part number")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void Upload24ImagesOf360TypeForNon_ExistingPartNumber()
+        public virtual void _3Upload24ImagesOf360TypeForNon_ExistingPartNumber()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Upload 24 images of 360 type for non-existing part number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 Upload 24 images of 360 type for non-existing part number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -310,13 +310,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Reload 1 image of 360 type images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("4 Reload 1 image of 360 type images")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void Reload1ImageOf360TypeImages()
+        public virtual void _4Reload1ImageOf360TypeImages()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reload 1 image of 360 type images", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4 Reload 1 image of 360 type images", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 51
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
