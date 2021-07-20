@@ -56,6 +56,11 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return GetConfig()["ImagesToUsePath"];
 
         }
+        public static string LastImage()
+        {
+            return GetConfig()["LastImage"];
+
+        }
     }
 }
 

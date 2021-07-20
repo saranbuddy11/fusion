@@ -213,5 +213,26 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU)));
         }
 
+        [Then(@"Copy 25 image files from ImagesToUse folder to the newly created folder")]
+        public void ThenCopyImageFilesFromImagesToUseFolderToTheNewlyCreatedFolder()
+        {
+            fileOp.CopyImagesToUse(datetime);
+            fileOp.RenamingFilesWithUsedPN(datetime);
+            fileOp.CopyImageToUse(datetime);
+
+        }
+
+        [Then(@"Rename the files with already used partnumber in the format PN-360-01 to PN-360-25")]
+        public void ThenRenameTheFilesWithAlreadyUsedPartnumberInTheFormatPNToPN()
+        {
+            fileOp.ReplacingWithUsedPartNumber(datetime, partNumAU);
+        }
+
+        [Then(@"Change the file extension from \.jpg to \.bmp")]
+        public void ThenChangeTheFileExtensionFrom_JpgTo_Bmp()
+        {
+            fileOp.ChangeExtentionTobmp(datetime);
+        }
+
     }
 }

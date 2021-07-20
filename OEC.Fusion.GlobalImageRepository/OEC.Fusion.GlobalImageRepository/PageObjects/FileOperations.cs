@@ -82,6 +82,16 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             }
         }
 
+        public void ReplacingWithUsedPartNumber(string datetime, string resultAU)
+        {
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace(ConfigHelper.LastImage(), resultAU + "-360-25"));
+            }
+        }
+
         public void ZipFolder(string datetime)
         {
             ZipFile.CreateFromDirectory(ConfigHelper.TestAutomationPath() + datetime + "", ConfigHelper.TestAutomationPath() + datetime + ".zip");
@@ -97,6 +107,20 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             {
                 File.Copy(sourceFile, targetDir);
             }
+        }
+
+        public void ChangeExtentionTobmp(string datetime)
+        {
+            //string filePath = @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\TestAutomation\\pa2021-07-20_054950\\0062762-360-06.jpg";
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace(".jpg", ".bmp"));
+            }
+               
+                //f.FullName, f.FullName.Replace("MN1Z5863805AA", resultAU)); ;)
+            //Console.WriteLine(newFile);
         }
     }
 }
