@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Text;
 
 namespace OEC.Fusion.GlobalImageRepository.PageObjects
@@ -11,6 +12,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
     {
         private DBHelper dbhelper = new DBHelper();
         public string datetime = "";
+        private string targetDir;
 
         public void CreateFolderWithCurrentDateTime(string dateTime)
         {            
@@ -109,18 +111,25 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             }
         }
 
+        public void CopyZipFilesTosftpPath(string datetime)
+        {
+            string sourceFile = ConfigHelper.TestAutomationPath() + datetime + ".zip";
+            string targetDir = ConfigHelper.DifferentRegion() + datetime + ".zip";
+            string tgtDirectory = Path.GetDirectoryName(targetDir);
+            if (File.Exists(sourceFile) && Directory.Exists(tgtDirectory))
+            {
+                File.Copy(sourceFile, targetDir);
+            }
+        }
+
         public void ChangeExtentionTobmp(string datetime)
         {
-            //string filePath = @"\\UQWDB023.qa.oec.local\\test\\ctsftp.gir2qc\\TestAutomation\\pa2021-07-20_054950\\0062762-360-06.jpg";
             DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
                 File.Move(f.FullName, f.FullName.Replace(".jpg", ".bmp"));
             }
-               
-                //f.FullName, f.FullName.Replace("MN1Z5863805AA", resultAU)); ;)
-            //Console.WriteLine(newFile);
         }
     }
 }

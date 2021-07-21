@@ -94,6 +94,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void CopyZipFilesToGir2qcFolder()
         {
             fileOp.CopyZipFilesToGir2qc(datetime);
+            //String region = dbhelper.GetsFTPPath()[0];
+            //fileOp.CopyZipFilesTosftpPath(datetime,region);
         }
 
         [Then(@"Run spPRODDailyDownload procedure to Upload zip file in Image directory")]
@@ -232,6 +234,19 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenChangeTheFileExtensionFrom_JpgTo_Bmp()
         {
             fileOp.ChangeExtentionTobmp(datetime);
+        }
+
+        [Then(@"Find sftp directory with different region to upload the zip file")]
+        public void ThenFindSftpDirectoryWithDifferentRegionToUploadTheZipFile()
+        {
+            dbe.DirectoryToUploadTheZipFileDiffRegion();
+        }
+
+        [Then(@"Copy zip file to different region directory")]
+        public void ThenCopyZipFileToDifferentRegionDirectory()
+        {
+            string region = dbhelper.GetDifferentRegionsFTPPath()[0];
+            fileOp.CopyZipFilesTosftpPath(datetime);
         }
 
     }

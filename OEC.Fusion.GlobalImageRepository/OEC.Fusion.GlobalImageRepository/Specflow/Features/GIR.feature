@@ -105,6 +105,18 @@ Scenario: 7 Reload 360 images for a different region
 	Then I verify the partnumber image files are present in Image directory
 	And Get the latest date and time attribute of the images present in Image directory
 	And Create a folder in local directory with format payyyy-mm-dd_hhmmss
+	And Copy 24 image files from ImagesToUse folder to the newly created folder
+	And Rename the files with already used partnumber in the format PN-360-01
+	And Zip created folder
+	And Find sftp directory with different region to upload the zip file
+	And Copy zip file to different region directory
+	And Run spPRODDailyDownload procedure to Upload zip file in Image directory
+	And Verify the partnumber images are present in Image directory
+	And Verify the partnumber images are present in Image directory using Query
+	And verify the Date and time attribute of the newly uploaded images is not greater than the old images
+	And Verify the created zip file is removed from sftp path
+
+
 
 	
 

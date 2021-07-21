@@ -117,6 +117,20 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return nonExistingPN;
         }
 
+        public List<String> GetDifferentRegionsFTPPath()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"declare @locPath varchar(500) = '' declare @sftpUserName varchar(50) = '' set @locPath = (SELECT TOP(1) LocationPath FROM[GlobalImageRepository].[config].[tblSYSLocation] where 1 = 1 and[LocationName] = 'SFTPPath') set @sftpUserName = (SELECT TOP(1)[ProviderSFTPUserName] FROM[GlobalImageRepository].[config].[tblFORDIllustrationProvider] where 1 = 1 and ProviderId = 1) select @locPath+@sftpUserName");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            List<String> sFTPPath = new List<string>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                sFTPPath.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
+            }
+            return sFTPPath;
+        }
+
         public Object SpPRODDailyDownload(string sprocName)
         {
             var ds = dal.ExecuteStoredProcedureScalar(sprocName);
