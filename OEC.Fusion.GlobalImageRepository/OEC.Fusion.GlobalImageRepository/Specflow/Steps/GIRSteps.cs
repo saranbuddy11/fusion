@@ -245,8 +245,12 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Copy zip file to different region directory")]
         public void ThenCopyZipFileToDifferentRegionDirectory()
         {
-            string region = dbhelper.GetDifferentRegionsFTPPath()[0];
             fileOp.CopyZipFilesTosftpPath(datetime);
+        }
+        [Then(@"Remove the file extension from \.jpg to null")]
+        public void ThenRemoveTheFileExtensionFrom_JpgToNull()
+        {
+            fileOp.RemovingExtensionFromjpg(datetime);
         }
 
     }

@@ -98,7 +98,6 @@ Scenario: 6 Upload 24 images of 360 type with improper extension
 	And Verify the partnumber images are not present in Image directory using Query
 	And Verify the created zip file is removed from sftp path
 	
-
 Scenario: 7 Reload 360 images for a different region
 	Given When I connect to the database
 	When I execute query to get already used partNumber
@@ -115,6 +114,25 @@ Scenario: 7 Reload 360 images for a different region
 	And Verify the partnumber images are present in Image directory using Query
 	And verify the Date and time attribute of the newly uploaded images is not greater than the old images
 	And Verify the created zip file is removed from sftp path
+
+Scenario: 8 Upload 24 images of 360 type with no extension
+	Given When I connect to the database
+	When I execute query to get the non used partNumber
+	Then I verify the partnumber images are not present in Image directory
+	And Create a folder in local directory with format payyyy-mm-dd_hhmmss
+	And Copy 24 image files from ImagesToUse folder to the newly created folder
+	And Remove the file extension from .jpg to null
+	And Rename the files with the partnumber in the format PN-360-01
+	And Zip created folder
+	And Find sftp directory to upload the zip file
+	And Copy zip file to the ctsftp.gir2qc directory
+	And Run spPRODDailyDownload procedure to Upload zip file in Image directory
+	And Verify the partnumber images are not present in Image directory
+	And Verify the partnumber images are not present in Image directory using Query
+	And Verify the created zip file is removed from sftp path
+
+
+
 
 
 

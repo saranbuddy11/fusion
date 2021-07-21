@@ -131,5 +131,15 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
                 File.Move(f.FullName, f.FullName.Replace(".jpg", ".bmp"));
             }
         }
+
+        public void RemovingExtensionFromjpg(string datetime)
+        {
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace(".jpg",null));
+            }
+        }
     }
 }
