@@ -230,10 +230,10 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             fileOp.ReplacingWithUsedPartNumber(datetime, partNumAU);
         }
 
-        [Then(@"Change the file extension from \.jpg to \.bmp")]
-        public void ThenChangeTheFileExtensionFrom_JpgTo_Bmp()
+        [Then(@"Change the file extension from \.jpg to(.*)")]
+        public void ThenChangeTheFileExtensionFrom_JpgTo_Bmp(string extension)
         {
-            fileOp.ChangeExtentionTobmp(datetime);
+            fileOp.ChangeExtention(datetime, extension,24);
         }
 
         [Then(@"Find sftp directory with different region to upload the zip file")]
@@ -247,11 +247,35 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         {
             fileOp.CopyZipFilesTosftpPath(datetime);
         }
-        [Then(@"Remove the file extension from \.jpg to null")]
+        [Then(@"Remove the file extension from .jpg to null")]
         public void ThenRemoveTheFileExtensionFrom_JpgToNull()
         {
-            fileOp.RemovingExtensionFromjpg(datetime);
+            fileOp.RemovingExtensionFromjpg(datetime, 24);
         }
 
+        [Then(@"Remove the file extension from .jpg to null only for one image file")]
+        public void ThenRemoveTheFileExtensionFrom_JpgToNullOnlyForOneImageFile()
+        {
+            fileOp.RemovingExtensionFromjpg(datetime, 1);
+        }
+
+        [Then(@"Rename the files with non used partnumber in the format PN-360-01 to PN-360-25")]
+        public void ThenRenameTheFilesWithNonUsedPartnumberInTheFormatPNToPN()
+        {
+            fileOp.ReplacingWithUsedPartNumber(datetime, result);
+        }
+
+        [Then(@"Copy 25 image files from ImagesToUse folder to the newly created folder with new partNumber")]
+        public void ThenCopyImageFilesFromImagesToUseFolderToTheNewlyCreatedFolderWithNewPartNumber()
+        {
+            fileOp.CopyImagesToUse(datetime);
+            fileOp.RenamingFiles(datetime, result);
+            fileOp.CopyImageToUse(datetime);
+        }
+        [Then(@"Change the file extension for only one file from \.jpg to (.*)")]
+        public void ThenChangeTheFileExtensionForOnlyOneFileFrom_JpgTo(string extension)
+        {
+            fileOp.ChangeExtention(datetime,extension, 1);
+        }
     }
 }

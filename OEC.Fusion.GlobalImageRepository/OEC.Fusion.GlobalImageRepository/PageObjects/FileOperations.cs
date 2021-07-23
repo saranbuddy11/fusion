@@ -87,7 +87,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         public void ReplacingWithUsedPartNumber(string datetime, string resultAU)
         {
             DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
-            FileInfo[] infos = d.GetFiles();
+            FileInfo[] infos = d.GetFiles();    
             foreach (FileInfo f in infos)
             {
                 File.Move(f.FullName, f.FullName.Replace(ConfigHelper.LastImage(), resultAU + "-360-25"));
@@ -122,23 +122,41 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             }
         }
 
-        public void ChangeExtentionTobmp(string datetime)
+        public void ChangeExtention(string datetime,string extension, int count)
         {
             DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
-            FileInfo[] infos = d.GetFiles();
-            foreach (FileInfo f in infos)
+            if (count == 24)
             {
-                File.Move(f.FullName, f.FullName.Replace(".jpg", ".bmp"));
+                FileInfo[] infos = d.GetFiles();
+                foreach (FileInfo f in infos)
+                {
+                    File.Move(f.FullName, f.FullName.Replace(".jpg", extension));
+                }
+            }
+            else if(count == 1)
+            {
+                FileInfo[] infos = d.GetFiles();
+                var f = infos[0];
+                File.Move(f.FullName, f.FullName.Replace(".jpg", extension));
             }
         }
 
-        public void RemovingExtensionFromjpg(string datetime)
+        public void RemovingExtensionFromjpg(string datetime, int count)
         {
             DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
-            FileInfo[] infos = d.GetFiles();
-            foreach (FileInfo f in infos)
+            if (count == 24)
             {
-                File.Move(f.FullName, f.FullName.Replace(".jpg",null));
+                FileInfo[] infos = d.GetFiles();
+                foreach (FileInfo f in infos)
+                {
+                    File.Move(f.FullName, f.FullName.Replace(".jpg", null));
+                }
+            }
+            else if(count == 1)
+            {
+                FileInfo[] infos = d.GetFiles();
+                var f = infos[0];
+                File.Move(f.FullName, f.FullName.Replace(".jpg", null));
             }
         }
     }
