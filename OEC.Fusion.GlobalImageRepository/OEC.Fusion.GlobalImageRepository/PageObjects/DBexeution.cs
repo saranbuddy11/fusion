@@ -16,7 +16,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         {
             string datetime = dbhelper.GetCurDateTime()[0];
             string deviceID = ConfigurationManager.AppSettings["QAServerPath"];
-            string path = dbhelper.GetsFTPPath()[0];
+            string path = dbhelper.GetsFTPPath();
             string[] storagePath = path.Split('\\');
             string lastPath = storagePath.Last().ToString();
             string gpath = ConfigHelper.GirPath();
@@ -29,7 +29,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         {
             string datetime = dbhelper.GetCurDateTime()[0];
             string deviceID = ConfigurationManager.AppSettings["QAServerPath"];
-            string path = dbhelper.GetDifferentRegionsFTPPath()[0];
+            string path = dbhelper.GetDifferentRegionsFTPPath();
             string[] storagePath = path.Split('\\');
             string lastPath = storagePath.Last().ToString();
             string gpath = ConfigHelper.DifferentRegion();

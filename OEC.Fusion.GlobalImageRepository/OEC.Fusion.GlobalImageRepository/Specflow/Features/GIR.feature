@@ -211,3 +211,4 @@ Scenario: 12 Upload 1 image with improper extension and 23 images with proper ex
 		| .jp       |
 		| .txt      |
 
+
