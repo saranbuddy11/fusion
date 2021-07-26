@@ -12,7 +12,6 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
     {
         private DBHelper dbhelper = new DBHelper();
         public string datetime = "";
-        private string targetDir;
 
         public void CreateFolderWithCurrentDateTime(string dateTime)
         {            
@@ -57,10 +56,10 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         {
             DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime+"\\");
             FileInfo[] infos = d.GetFiles();
-            foreach (FileInfo f in infos)
-            {
-                File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", result));
-            }
+                foreach (FileInfo f in infos)
+                {
+                    File.Move(f.FullName, f.FullName.Replace(ConfigHelper.ExistingFile(), result));
+                }
         }
 
         public void RenamingFilesNonExistingPN(string datetime, string NonexistPartNumber)
@@ -69,7 +68,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
-                File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", NonexistPartNumber));
+                File.Move(f.FullName, f.FullName.Replace(ConfigHelper.ExistingFile(), NonexistPartNumber));
             }
         }
 
@@ -80,7 +79,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
-                File.Move(f.FullName, f.FullName.Replace("MN1Z5863805AA", resultAU));
+                File.Move(f.FullName, f.FullName.Replace(ConfigHelper.ExistingFile(), resultAU));
             }
         }
 

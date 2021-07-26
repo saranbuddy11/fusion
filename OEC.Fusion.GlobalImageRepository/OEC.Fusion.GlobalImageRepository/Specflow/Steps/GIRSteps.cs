@@ -94,8 +94,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void CopyZipFilesToGir2qcFolder()
         {
             fileOp.CopyZipFilesToGir2qc(datetime);
-            //String region = dbhelper.GetsFTPPath()[0];
-            //fileOp.CopyZipFilesTosftpPath(datetime,region);
         }
 
         [Then(@"Run spPRODDailyDownload procedure to Upload zip file in Image directory")]

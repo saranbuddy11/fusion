@@ -64,6 +64,11 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
         {
             return GetConfig()["DifferentRegion"];
         }
+
+        public static string ExistingFile()
+        {
+            return GetConfig()["ExistingFile"];
+        }
     }
 }
 
