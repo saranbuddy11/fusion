@@ -3,6 +3,7 @@ using OEC.Fusion.GlobalImageRepository.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Text;
 
 namespace OEC.Fusion.GlobalImageRepository.PageObjects
@@ -15,9 +16,26 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         {
             string datetime = dbhelper.GetCurDateTime()[0];
             string deviceID = ConfigurationManager.AppSettings["QAServerPath"];
-            string path = dbhelper.GetsFTPPath()[0];
-            String StoragePath = @path;
-            Assert.IsTrue(true, StoragePath, ConfigHelper.GirPath());
+            string path = dbhelper.GetsFTPPath();
+            string[] storagePath = path.Split('\\');
+            string lastPath = storagePath.Last().ToString();
+            string gpath = ConfigHelper.GirPath();
+            string[] girPath = gpath.Split("\\\\");
+            string lastGirPath = girPath[3].ToString();
+            Assert.AreEqual(lastPath, lastGirPath);
+        }
+
+        public void DirectoryToUploadTheZipFileDiffRegion()
+        {
+            string datetime = dbhelper.GetCurDateTime()[0];
+            string deviceID = ConfigurationManager.AppSettings["QAServerPath"];
+            string path = dbhelper.GetDifferentRegionsFTPPath();
+            string[] storagePath = path.Split('\\');
+            string lastPath = storagePath.Last().ToString();
+            string gpath = ConfigHelper.DifferentRegion();
+            string[] girPath = gpath.Split("\\\\");
+            string lastGirPath = girPath[3].ToString();
+            Assert.AreEqual(lastPath, lastGirPath);
         }
 
         public void RunSpPRODDailyDownloadProcedure()

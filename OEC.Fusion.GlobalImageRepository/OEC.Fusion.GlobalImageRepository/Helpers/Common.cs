@@ -172,7 +172,7 @@ namespace OEC.Fusion.GlobalImageRepository
         public void GetNonExistingPN()
         {
             NonexistPartNumber = ConfigHelper.NonExistingPartNo();
-            Assert.IsTrue(dBHelper.VerifyNonExistingPN()[0].Equals("0"));
+            Assert.IsTrue(dBHelper.VerifyNonExistingPN().Equals("0"));
         }
 
     }
