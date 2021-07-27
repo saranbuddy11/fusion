@@ -48,7 +48,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [When(@"I execute query to get the non used partNumber")]
         public void WhenIExecuteQueryToGetTheNonUsedPartNumber()
         {
-            result = dbhelper.GetPartNumber()[0];
+            result = dbhelper.GetPartNumber();
         }
 
         [Then(@"I verify the partnumber images are not present in Image directory")]
@@ -124,7 +124,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [When(@"I execute query to get already used partNumber")]
         public void IExecuteQueryToGetAlreadyUsedPartNumber()
         {
-            partNumAU = dbhelper.GetPartNumberAlreadyUsed()[0];
+            partNumAU = dbhelper.GetPartNumberAlreadyUsed();
         }
 
         [Then(@"I verify the partnumber image files are present in Image directory")]

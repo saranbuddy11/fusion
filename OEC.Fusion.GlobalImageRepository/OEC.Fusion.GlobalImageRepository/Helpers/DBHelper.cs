@@ -17,17 +17,13 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             dal = new DAL(dsn);
         }
 
-        public List<String> GetPartNumber()
+        public string GetPartNumber()
         {
             var sb = new StringBuilder();
             sb.AppendLine($"select top 1 pp.[PartNumber] FROM[GlobalImageRepository].[import].[tblPRTPartCPIPersisted] pp left join[GlobalImageRepository].[import].[tblIMGImageListPersisted] im ON pp.PartId = im.PartId where 1 = 1 and im.PartId is NUll and pp.PartTypeId = 1 and pp.CPIRegionId = 2 order by pp.PartId desc");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            List<String> results = new List<String>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                results.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
-            }
+            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
             return results;
         }
 
@@ -71,17 +67,13 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return verifyImages;
         }
 
-        public List<String> GetPartNumberAlreadyUsed()
+        public string GetPartNumberAlreadyUsed()
         {
             var sb = new StringBuilder();
             sb.AppendLine($"select top 1 pp.[PartNumber] FROM[GlobalImageRepository].[import].[tblPRTPartCPIPersisted] pp inner join[GlobalImageRepository].[import].[tblIMGImageListPersisted] im ON pp.PartId = im.PartId where 1 = 1 and pp.PartTypeId = 1 and pp.CPIRegionId = 2 and left(im.ImageView, 3) = '360' order by pp.PartId , im.ImageId desc");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            List<String> resultsAU = new List<String>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                resultsAU.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
-            }
+            string resultsAU = ds.Tables[0].Rows[0][0].ToString().Trim();
             return resultsAU;
         }
 
@@ -99,17 +91,13 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return dateTimeUsedPN;
         }
 
-        public List<String> VerifyNonExistingPN()
+        public string VerifyNonExistingPN()
         {
             var sb = new StringBuilder();
             sb.AppendLine($"SELECT COUNT(1) FROM[GlobalImageRepository].[import].[tblPRTPartCPIPersisted] where 1 = 1 and[PartNumber] = 'a1b2c3d4e5f6g7h8i9j0'");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            List<String> nonExistingPN = new List<string>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                nonExistingPN.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
-            }
+            string nonExistingPN = ds.Tables[0].Rows[0][0].ToString().Trim();
             return nonExistingPN;
         }
 
