@@ -92,13 +92,13 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 GIR Image Verification")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("01 GIR Image Verification")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _1GIRImageVerification()
+        public virtual void _01GIRImageVerification()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1 GIR Image Verification", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 GIR Image Verification", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -163,13 +163,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("2 Reload proper 24 of 360 type images that has 360 images assigned already")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("02 Reload proper 24 of 360 type images that has 360 images assigned already")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _2ReloadProper24Of360TypeImagesThatHas360ImagesAssignedAlready()
+        public virtual void _02ReloadProper24Of360TypeImagesThatHas360ImagesAssignedAlready()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2 Reload proper 24 of 360 type images that has 360 images assigned already", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 Reload proper 24 of 360 type images that has 360 images assigned already", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -241,13 +241,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("3 Upload 24 images of 360 type for non-existing part number")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("03 Upload 24 images of 360 type for non-existing part number")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _3Upload24ImagesOf360TypeForNon_ExistingPartNumber()
+        public virtual void _03Upload24ImagesOf360TypeForNon_ExistingPartNumber()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 Upload 24 images of 360 type for non-existing part number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 Upload 24 images of 360 type for non-existing part number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 35
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -310,13 +310,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("4 Reload 1 image of 360 type images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("04 Reload 1 image of 360 type images")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _4Reload1ImageOf360TypeImages()
+        public virtual void _04Reload1ImageOf360TypeImages()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4 Reload 1 image of 360 type images", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 Reload 1 image of 360 type images", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 49
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -388,13 +388,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("5 Reload 25 images from 360 type images for 1 part")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("05 Reload 25 images from 360 type images for 1 part")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _5Reload25ImagesFrom360TypeImagesFor1Part()
+        public virtual void _05Reload25ImagesFrom360TypeImagesFor1Part()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("5 Reload 25 images from 360 type images for 1 part", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05 Reload 25 images from 360 type images for 1 part", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 66
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -466,12 +466,12 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        public virtual void _6Upload24ImagesOf360TypeWithImproperExtension(string extension, string[] exampleTags)
+        public virtual void _06Upload24ImagesOf360TypeWithImproperExtension(string extension, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("extension", extension);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("6 Upload 24 images of 360 type with improper extension", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06 Upload 24 images of 360 type with improper extension", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 83
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -539,49 +539,49 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("6 Upload 24 images of 360 type with improper extension: .bmp")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("06 Upload 24 images of 360 type with improper extension: .bmp")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", ".bmp")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:extension", ".bmp")]
-        public virtual void _6Upload24ImagesOf360TypeWithImproperExtension_Bmp()
+        public virtual void _06Upload24ImagesOf360TypeWithImproperExtension_Bmp()
         {
 #line 83
-this._6Upload24ImagesOf360TypeWithImproperExtension(".bmp", ((string[])(null)));
+this._06Upload24ImagesOf360TypeWithImproperExtension(".bmp", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("6 Upload 24 images of 360 type with improper extension: .jp")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("06 Upload 24 images of 360 type with improper extension: .jp")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", ".jp")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:extension", ".jp")]
-        public virtual void _6Upload24ImagesOf360TypeWithImproperExtension_Jp()
+        public virtual void _06Upload24ImagesOf360TypeWithImproperExtension_Jp()
         {
 #line 83
-this._6Upload24ImagesOf360TypeWithImproperExtension(".jp", ((string[])(null)));
+this._06Upload24ImagesOf360TypeWithImproperExtension(".jp", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("6 Upload 24 images of 360 type with improper extension: .txt")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("06 Upload 24 images of 360 type with improper extension: .txt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", ".txt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:extension", ".txt")]
-        public virtual void _6Upload24ImagesOf360TypeWithImproperExtension_Txt()
+        public virtual void _06Upload24ImagesOf360TypeWithImproperExtension_Txt()
         {
 #line 83
-this._6Upload24ImagesOf360TypeWithImproperExtension(".txt", ((string[])(null)));
+this._06Upload24ImagesOf360TypeWithImproperExtension(".txt", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("7 Reload 360 images for a different region")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("07 Reload 360 images for a different region")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _7Reload360ImagesForADifferentRegion()
+        public virtual void _07Reload360ImagesForADifferentRegion()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("7 Reload 360 images for a different region", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("07 Reload 360 images for a different region", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 105
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -653,13 +653,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("8 Upload 24 images of 360 type with no extension")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("08 Upload 24 images of 360 type with no extension")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _8Upload24ImagesOf360TypeWithNoExtension()
+        public virtual void _08Upload24ImagesOf360TypeWithNoExtension()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("8 Upload 24 images of 360 type with no extension", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("08 Upload 24 images of 360 type with no extension", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 122
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -727,13 +727,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("9 Upload 1 image with no extension and 23 images with proper extension")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("09 Upload 1 image with no extension and 23 images with proper extension")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GIR")]
-        public virtual void _9Upload1ImageWithNoExtensionAnd23ImagesWithProperExtension()
+        public virtual void _09Upload1ImageWithNoExtensionAnd23ImagesWithProperExtension()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9 Upload 1 image with no extension and 23 images with proper extension", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("09 Upload 1 image with no extension and 23 images with proper extension", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 138
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
