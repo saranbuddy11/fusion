@@ -69,7 +69,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Copy 24 image files from ImagesToUse folder to the newly created folder")]
         public void CopyFilesFromPartsToNewFolder()
         {
-            fileOp.CopyImagesToUse(datetime);
+            fileOp.CopyImagesToUse(datetime,24);
         }
 
         [Then(@"Rename the files with the partnumber in the format PN-360-01")]
@@ -216,10 +216,9 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Copy 25 image files from ImagesToUse folder to the newly created folder")]
         public void ThenCopyImageFilesFromImagesToUseFolderToTheNewlyCreatedFolder()
         {
-            fileOp.CopyImagesToUse(datetime);
+            fileOp.CopyImagesToUse(datetime, 24);
             fileOp.RenamingFilesWithUsedPN(datetime);
             fileOp.CopyImageToUse(datetime);
-
         }
 
         [Then(@"Rename the files with already used partnumber in the format PN-360-01 to PN-360-25")]
@@ -266,7 +265,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Copy 25 image files from ImagesToUse folder to the newly created folder with new partNumber")]
         public void ThenCopyImageFilesFromImagesToUseFolderToTheNewlyCreatedFolderWithNewPartNumber()
         {
-            fileOp.CopyImagesToUse(datetime);
+            fileOp.CopyImagesToUse(datetime,24);
             fileOp.RenamingFiles(datetime, result);
             fileOp.CopyImageToUse(datetime);
         }
@@ -275,5 +274,18 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         {
             fileOp.ChangeExtention(datetime,extension, 1);
         }
+
+        [Then(@"Copy 23 image files from ImagesToUse folder to the newly created folder")]
+        public void ThenCopy23ImageFilesFromImagesToUseFolderToTheNewlyCreatedFolder()
+        {
+            fileOp.CopyImagesToUse(datetime,23);
+        }
+
+        [Then(@"Rename the files with already used partnumber in the format PN-360-01 to PN-360-23")]
+        public void ThenRename23FilesWithAlreadyUsedPartnumberInTheFormatPNToPN()
+        {
+            fileOp.RenamingFilesWithUsedPN(datetime);
+        }
+
     }
 }

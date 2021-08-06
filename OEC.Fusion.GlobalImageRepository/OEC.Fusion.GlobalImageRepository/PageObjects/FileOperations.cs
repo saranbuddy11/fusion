@@ -25,17 +25,27 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             Directory.CreateDirectory(subdir1);
         }
 
-        public void CopyImagesToUse(string datetime)
+        public void CopyImagesToUse(string datetime, int count)
         {
             String source = ConfigHelper.ImagesToUsePath();
-            String target = ConfigHelper.TestAutomationPath() + datetime +"\\";
+            String target = ConfigHelper.TestAutomationPath() + datetime + "\\";
             String[] files = Directory.GetFiles(source);
             foreach (string fil in files)
             {
                 string fileName = Path.GetFileName(fil);
-                File.Copy(fil, target + fileName, true);
+                if (count == 23)
+                {
+                    File.Copy(fil, target + fileName, true);
+                    string last = fil.Substring(fil.Length - 6);
+                    if (last.Equals("23.jpg"))
+                    { break; }
+                }
+                else
+                    File.Copy(fil, target + fileName, true);
             }
         }
+
+
 
         public void CopyImageToUse(string datetime)
         {
