@@ -45,8 +45,6 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             }
         }
 
-
-
         public void CopyImageToUse(string datetime)
         {
             String source = ConfigHelper.ImagesToUsePath();
