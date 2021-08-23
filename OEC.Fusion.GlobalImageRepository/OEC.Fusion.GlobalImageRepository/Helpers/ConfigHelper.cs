@@ -69,7 +69,12 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
         {
             return GetConfig()["ExistingFile"];
         }
-    }
+
+        public static string CorruptedFile()
+        {
+                return GetConfig()["CorruptedFile"];
+        }
+        }
 }
 
 

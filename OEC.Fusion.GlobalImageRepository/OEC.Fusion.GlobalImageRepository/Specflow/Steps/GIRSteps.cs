@@ -287,5 +287,22 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             fileOp.RenamingFilesWithUsedPN(datetime);
         }
 
+        [When(@"Find sftp directory to upload the zip file")]
+        public void WhenFindSftpDirectoryToUploadTheZipFile()
+        {
+            dbe.DirectoryToUploadTheZipFile();
+        }
+
+        [Then(@"Copy the corrupted zip file from local to ctsftp.gir2qc directory")]
+        public void ThenCopyTheCorruptedZipFileFromLocalToCtsftp_GirqcDirectory()
+        {
+            fileOp.CopyZipFilesToGir2qc(ConfigHelper.CorruptedFile());
+        }
+
+        [Then(@"Verify the Corrupted zip file is removed from sftp path")]
+        public void ThenVerifyTheCorruptedZipFileIsRemovedFromSftpPath()
+        {
+            Assert.IsTrue(rsult.FileNotPresentInSftp(ConfigHelper.CorruptedFile()));
+        }
     }
 }
