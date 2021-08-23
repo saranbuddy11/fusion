@@ -160,5 +160,12 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
                 File.Move(f.FullName, f.FullName.Replace(".jpg", null));
             }
         }
+
+        public void ReplaceDataByte(string filename,int position, byte[] data)
+        {
+            using Stream stream = File.Open(filename, FileMode.Open);
+            stream.Position = position;
+            stream.Write(data, 0, data.Length);
+        }
     }
 }
