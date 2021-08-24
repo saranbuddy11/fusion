@@ -28,6 +28,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public string dateTimeUsedPN = "";
         public string NonexistPartNumber = "";
         ScenarioContext _scenarioContext;
+        private byte[] data= {1,2,3,5};
 
         public GIRSteps(ScenarioContext scenarioContext)
         {
@@ -285,6 +286,31 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenRename23FilesWithAlreadyUsedPartnumberInTheFormatPNToPN()
         {
             fileOp.RenamingFilesWithUsedPN(datetime);
+        }
+
+        [When(@"Find sftp directory to upload the zip file")]
+        public void WhenFindSftpDirectoryToUploadTheZipFile()
+        {
+            dbe.DirectoryToUploadTheZipFile();
+        }
+
+        [Then(@"Copy the corrupted zip file from local to ctsftp.gir2qc directory")]
+        public void ThenCopyTheCorruptedZipFileFromLocalToCtsftp_GirqcDirectory()
+        {
+            fileOp.CopyZipFilesToGir2qc(datetime);
+        }
+
+        [Then(@"Verify the Corrupted zip file is removed from sftp path")]
+        public void ThenVerifyTheCorruptedZipFileIsRemovedFromSftpPath()
+        {
+            Assert.IsTrue(rsult.FileNotPresentInSftp(datetime));
+        }
+
+        [Then(@"Convert the zip file to a corrupted file")]
+        public void ThenConvertTheZipFileToACorruptedFile()
+        {
+            string filename = ConfigHelper.TestAutomationPath() + datetime+ ".zip";
+            fileOp.ReplaceDataByte(filename, 1, data);
         }
 
     }

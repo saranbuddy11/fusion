@@ -228,6 +228,24 @@ Scenario: 13 Reload 23 images from 360 type images for 1 part
 	And verify the Date and time attribute of the newly uploaded images is not greater than the old images
 	And Verify the created zip file is removed from sftp path
 
+Scenario: 14 Upload a corrupted file
+	Given When I connect to the database
+	When I execute query to get the non used partNumber
+	Then I verify the partnumber images are not present in Image directory
+	And Create a folder in local directory with format payyyy-mm-dd_hhmmss
+	And Copy 24 image files from ImagesToUse folder to the newly created folder
+	And Rename the files with the partnumber in the format PN-360-01
+	And Zip created folder
+	And Convert the zip file to a corrupted file
+	And Find sftp directory to upload the zip file
+	And Copy the corrupted zip file from local to ctsftp.gir2qc directory
+	And Run spPRODDailyDownload procedure to Upload zip file in Image directory
+	And Verify the partnumber images are not present in Image directory
+	And Verify the partnumber images are not present in Image directory using Query
+	And Verify the Corrupted zip file is removed from sftp path
+
+
+	
 
 
 

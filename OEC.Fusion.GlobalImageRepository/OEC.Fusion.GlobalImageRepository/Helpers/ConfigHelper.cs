@@ -69,6 +69,7 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
         {
             return GetConfig()["ExistingFile"];
         }
+
     }
 }
 
