@@ -29,7 +29,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "GIR.feature"
+#line 1 "GIR_ImportImages360Type.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext

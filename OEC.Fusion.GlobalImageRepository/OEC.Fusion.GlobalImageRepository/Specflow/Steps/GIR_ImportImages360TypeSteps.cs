@@ -15,7 +15,7 @@ using System.Threading;
 namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
 {
     [Binding]
-    public class GIRSteps
+    public class GIR_ImportImages360TypeSteps
     {
         public string StoragePath { get; private set; }
         FileOperations fileOp;
@@ -30,7 +30,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         ScenarioContext _scenarioContext;
         private byte[] data= {1,2,3,5};
 
-        public GIRSteps(ScenarioContext scenarioContext)
+        public GIR_ImportImages360TypeSteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
             dbhelper = new DBHelper();

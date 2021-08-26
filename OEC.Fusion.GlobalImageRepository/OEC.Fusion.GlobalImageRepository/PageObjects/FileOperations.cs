@@ -167,5 +167,15 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             stream.Position = position;
             stream.Write(data, 0, data.Length);
         }
+
+        public void RenameProperImage(string properImageView, string datetime, string result)
+        {
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace(ConfigHelper.ExistingFile(), result + "-" + properImageView));
+            }
+        }
     }
 }
