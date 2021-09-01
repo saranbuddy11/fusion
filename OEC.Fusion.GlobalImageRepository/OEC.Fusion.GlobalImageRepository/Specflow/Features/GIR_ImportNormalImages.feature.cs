@@ -133,19 +133,40 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Copy only one image file from ImagesToUse folder to the newly created folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.And(string.Format("Rename the Image file with the non used partnumber and {0} in the format PN-Prope" +
-                            "rImageView", properImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Rename the Image file with the non used partnumber and \'{0}\' in the format PN-Pro" +
+                            "perImageView", properImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("Zip created folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.And("Find sftp directory to upload the zip file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("Copy zip file to the ctsftp.gir2qc directory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("Run spPRODDailyDownload procedure to Upload zip file in Image directory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.And(string.Format("Verify uploaded proper images are present in the Image directory with \'{0}\'", properImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.And("Verify uploaded proper images are present in the Image folder using query", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+ testRunner.And("Verify the created zip file is removed from sftp path", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: LIF")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "LIF")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "LIF")]
-        public virtual void _1UploadANewProperNormalTypeImageForAPart_LIF()
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant0()
         {
 #line 5
 this._1UploadANewProperNormalTypeImageForAPart("LIF", ((string[])(null)));
@@ -153,11 +174,11 @@ this._1UploadANewProperNormalTypeImageForAPart("LIF", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: FRO")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "FRO")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "FRO")]
-        public virtual void _1UploadANewProperNormalTypeImageForAPart_FRO()
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant1()
         {
 #line 5
 this._1UploadANewProperNormalTypeImageForAPart("FRO", ((string[])(null)));
@@ -165,14 +186,266 @@ this._1UploadANewProperNormalTypeImageForAPart("FRO", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: TIN")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "TIN")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "TIN")]
-        public virtual void _1UploadANewProperNormalTypeImageForAPart_TIN()
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant2()
         {
 #line 5
 this._1UploadANewProperNormalTypeImageForAPart("TIN", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 3")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ANG")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant3()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ANG", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 4")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "BAC")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant4()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("BAC", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 5")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "LEF")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant5()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("LEF", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 6")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 6")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "RIT")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant6()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("RIT", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 7")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 7")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "TOP")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant7()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("TOP", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 8")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 8")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "BOT")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant8()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("BOT", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 9")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 9")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "SID")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant9()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("SID", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 10")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 10")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "CON")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant10()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("CON", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 11")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 11")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "KIT")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant11()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("KIT", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 12")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 12")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "OTH")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant12()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("OTH", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 13")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 13")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ1")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant13()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ1", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 14")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 14")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ2")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant14()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ2", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 15")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 15")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ3")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant15()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ3", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 16")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 16")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ4")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant16()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ4", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 17")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 17")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ5")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant17()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ5", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 18")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 18")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ6")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant18()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ6", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 19")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 19")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ7")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant19()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ7", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 20")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 20")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ8")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant20()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ8", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 21")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 21")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ9")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant21()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ9", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 22")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 22")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ2")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant22()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ2", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload a new proper normal type image for a part: Variant 23")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 23")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "ZZ2")]
+        public virtual void _1UploadANewProperNormalTypeImageForAPart_Variant23()
+        {
+#line 5
+this._1UploadANewProperNormalTypeImageForAPart("ZZ2", ((string[])(null)));
 #line hidden
         }
     }

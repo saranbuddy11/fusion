@@ -174,7 +174,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
-                File.Move(f.FullName, f.FullName.Replace(ConfigHelper.ExistingFile(), result + "-" + properImageView));
+                File.Move(f.FullName, f.FullName.Replace(ConfigHelper.LastImage(), result+"-"+properImageView));
             }
         }
     }

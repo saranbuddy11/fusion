@@ -23,6 +23,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         private DBexeution dbe;
         private Common rsult;
         public string result = "";
+        public string res = "";
         public string datetime = "";
         public string partNumAU = "";
         public string dateTimeUsedPN = "";
@@ -46,10 +47,12 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             string db = ConfigHelper.GetDefaultConnection();
         }
 
+        
         [When(@"I execute query to get the non used partNumber")]
         public void WhenIExecuteQueryToGetTheNonUsedPartNumber()
         {
             result = dbhelper.GetPartNumber();
+            ScenarioContext.Current["_result"] = result;
         }
 
         [Then(@"I verify the partnumber images are not present in Image directory")]
@@ -64,6 +67,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             //Pulls the server current date and time in the format payyyy-mm-dd_hhmmss
 
             datetime = dbhelper.GetCurDateTime()[0];
+            ScenarioContext.Current["_datetime"] = datetime;
             fileOp.CreateFolderWithCurrentDateTime(datetime);
         }
 
