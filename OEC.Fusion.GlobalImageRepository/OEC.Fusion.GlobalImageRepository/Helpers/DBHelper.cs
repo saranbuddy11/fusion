@@ -131,5 +131,35 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             Object results = new object();
             return ds;
         }
+        public string GetProperImageNumber(string CurlImageView)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"SELECT TOP 1 substring(ImageName,1,len(ImageName)-8) FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd WHERE 1=1 and PrimaryView = 1 and ImageView = '"+ CurlImageView +"'");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
+            return results;
+        }
+
+        public string ExpectedImageView(string ExpectedImageView, string result)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"select PrimaryView FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd where 1=1 and substring(ImageName,1,len(ImageName)-8) = '"+result+"' and ImageView = '"+ExpectedImageView+"'");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
+            return results;
+           
+        }
+
+        public string OtherImageView(string ExpectedImageView, string result)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"select distinct PrimaryView FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd where 1=1 and substring(ImageName,1,len(ImageName)-8) = '"+result+"' and ImageView != '"+ExpectedImageView+"'");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
+            return results;
+        }
     }
 }

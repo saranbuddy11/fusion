@@ -189,58 +189,41 @@ namespace OEC.Fusion.GlobalImageRepository
             Assert.IsTrue(dBHelper.VerifyNonExistingPN().Equals("0"));
         }
 
-        public Boolean ProperImagePresent(string result, string properImageView)
+        public Boolean NormalImagePresent(string result, string properImageView)
         {
             bool rslt = false;
-            for (int i = 1; i <= 24; i++)
+                string path = ConfigHelper.ImagesPath() + result + "-" + properImageView +".jpg";
+                string pathJPEG = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpeg";
+                try {
+                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
+                        rslt = false;
+                    }
+                catch (Exception e)
+                    {
+                        rslt = true;
+                    }
+            return rslt;
+        }
+
+        public Boolean NormalImageNotPresent(string result, string properImageView)
+        {
+            bool rslt = false;
+            string path = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpg";
+            string pathJPEG = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpeg";
+            try
             {
-                string path = ConfigHelper.ImagesPath() + result + properImageView;
-                string pathJPEG = ConfigHelper.ImagesPath() + result + properImageView;
-                if (i < 10)
-                {
-
-                    //To change the integer from 1 to 01 upto 09
-                    //1 => the number of precision
-
-                    int decimalLength = i.ToString("D").Length + 1;
-                    string prefix = i.ToString("D" + decimalLength.ToString());
-                    path = path + prefix + ".jpg";
-                    pathJPEG = pathJPEG + prefix + ".jpeg";
-                    try
-                    {
-                        //Images are not present in the Image directory
-
-                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
-                        rslt = false;
-                    }
-                    catch (Exception e)
-                    {
-                        rslt = true;
-                        break;
-                    }
-                }
-                else
-                {
-                    path = path + i + ".jpg";
-                    pathJPEG = pathJPEG + i + ".jpeg";
-                    try
-                    {
-                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
-                        rslt = false;
-                    }
-                    catch (Exception e)
-                    {
-                        rslt = true;
-                        break;
-
-                    }
-                }
+                Assert.IsTrue(!File.Exists(path) || !File.Exists(pathJPEG));
+                rslt = false;
+            }
+            catch (Exception e)
+            {
+                rslt = true;
             }
             return rslt;
-
         }
     }
-}
+    }
+
 
 
 
