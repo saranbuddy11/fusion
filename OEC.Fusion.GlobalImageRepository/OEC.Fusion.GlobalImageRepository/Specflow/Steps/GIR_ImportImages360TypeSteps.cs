@@ -46,7 +46,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         {
             string db = ConfigHelper.GetDefaultConnection();
         }
-
         
         [When(@"I execute query to get the non used partNumber")]
         public void WhenIExecuteQueryToGetTheNonUsedPartNumber()
@@ -123,7 +122,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenVerifyTheZipFileRemovedFromSftpPath()
         {
             Assert.IsTrue(rsult.FileNotPresentInSftp(datetime));
-
         }
 
         [When(@"I execute query to get already used partNumber")]

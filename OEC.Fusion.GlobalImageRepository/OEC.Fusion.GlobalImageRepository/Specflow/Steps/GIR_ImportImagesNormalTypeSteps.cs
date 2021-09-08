@@ -1,4 +1,5 @@
-﻿using OEC.Fusion.GlobalImageRepository.Helpers;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OEC.Fusion.GlobalImageRepository.Helpers;
 using OEC.Fusion.GlobalImageRepository.PageObjects;
 using OEC.Fusion.GlobalImageRepository.Specflow.Steps;
 using System;
@@ -49,10 +50,12 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             rsult.NormalImagePresent(result1, properImageView);
         }
 
-        [Then(@"Verify uploaded proper images are present in the Image folder using query")]
-        public void ThenVerifyUploadedProperImagesArePresentInTheImageFolderUsingQuery()
+        [Then(@"Verify uploaded proper images are present in the Image folder using query with (.*)")]
+        public void ThenVerifyUploadedProperImagesArePresentInTheImageFolderUsingQueryWithLIF(string properImageView)
         {
-            rsult.ProperImageVerification(result1);
+            string result1 = (string)ScenarioContext.Current["_result"];
+            string result2 = result1 + "-" + properImageView;
+            Assert.IsTrue(rsult.ProperImageVerification(result2));
         }
 
         [When(@"I execute query to get the partNumber with (.*)")]
@@ -68,7 +71,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         {
             String result = (string)ScenarioContext.Current["_result"];
             string datetime = (string)ScenarioContext.Current["_datetime"];
-           fileOp.RenameProperImage(NewImageView,datetime,result);
+            fileOp.RenameProperImage(NewImageView,datetime,result);
         }
 
         [Then(@"Verify uploaded proper image is present in the Image directory with (.*)")]
@@ -92,7 +95,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             dbe.VerifyOtherImage(ExpectedImageView, result);
         }
 
-        [Then(@"Rename the Image file with the non-used partnumber and LI in the format PN-NewImageView")]
+        [Then(@"Rename the Image file with the non-used partnumber and (.*) in the format PN-NewImageView")]
         public void ThenRenameTheImageFileWithTheNon_UsedPartnumberAndLIInTheFormatPN_NewImageView(string ImproperImageView)
         {
             string result = (string)ScenarioContext.Current["_result"];
@@ -112,19 +115,14 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         {
             string result = (string)ScenarioContext.Current["_result"];
             dbhelper.VerifyProperImagesPresentInFolder(result);
-            
         }
 
-        [When(@"I run the query to check the dbhelper")]
-        public void WhenIRunTheQueryToCheckTheDbhelper()
+        [Then(@"Verify uploaded Improper images are not present in the Image folder using query with (.*)")]
+        public void ThenVerifyUploadedImproperImagesAreNotPresentInTheImageFolderUsingQueryWithLI(string ImproperImageView)
         {
-            dbhelper.VerifyProperImagesPresentInFolder("MK4Z14406Q"));
-        }
-
-        [Then(@"I verify it is correct or not")]
-        public void ThenIVerifyItIsCorrectOrNot()
-        {
-            Console.WriteLine("test");
+            string result = (string)ScenarioContext.Current["_result"];
+            string result2 = result + "-" + ImproperImageView;
+            Assert.IsFalse(rsult.ProperImageVerification(result2));
         }
 
     }

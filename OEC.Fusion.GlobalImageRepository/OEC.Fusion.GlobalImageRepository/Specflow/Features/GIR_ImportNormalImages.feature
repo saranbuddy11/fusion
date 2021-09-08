@@ -13,7 +13,7 @@ Scenario Outline: 1 Upload new proper normal type image for a part
 	And Copy zip file to the ctsftp.gir2qc directory
 	And Run spPRODDailyDownload procedure to Upload zip file in Image directory
 	And Verify uploaded proper images are present in the Image directory with <properImageView>
-	And Verify uploaded proper images are present in the Image folder using query
+	And Verify uploaded proper images are present in the Image folder using query with <properImageView>
 	And Verify the created zip file is removed from sftp path
 Examples:
 	| properImageView |
@@ -78,7 +78,7 @@ Scenario Outline: 3 Upload normal image with improper image view
 	And Copy zip file to the ctsftp.gir2qc directory
 	And Run spPRODDailyDownload procedure to Upload zip file in Image directory
 	And Verify uploaded Improper images are not present in the Image directory with <ImproperImageView>
-	And Verify uploaded Improper images are not present in the Image folder using query
+	And Verify uploaded Improper images are not present in the Image folder using query with <ImproperImageView>
 	And Verify the created zip file is removed from sftp path
 
 
@@ -91,10 +91,7 @@ Examples:
 	| ZZ10              |
 	| Z10               |
 
-Scenario: 4 Check db issue
-	Given When I connect to the database
-	When I run the query to check the dbhelper
-	Then I verify it is correct or not
+
 
 
 

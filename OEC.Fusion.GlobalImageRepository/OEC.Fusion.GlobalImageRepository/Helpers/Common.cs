@@ -121,7 +121,6 @@ namespace OEC.Fusion.GlobalImageRepository
                 }
             }
                 return rslt;
-            
         }
 
         public Boolean ImageVerification(String result)
@@ -138,7 +137,7 @@ namespace OEC.Fusion.GlobalImageRepository
             return output;
         }
 
-        public Boolean ProperImageVerification(String result)
+        public Boolean ProperImageVerification(string result)
         {
             bool output;
             string expectedValue = "1";
