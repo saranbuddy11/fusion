@@ -53,31 +53,23 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return curDateTime;
         }
 
-        public List<string> VerifyImagesPresentInFolder(string result)
+        public string VerifyImagesPresentInFolder(string result)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"select Count(1) from [GlobalImageRepository].[import].[tblIMGImageListPersisted]  ilp where 1 = 1 and ilp.ImageView like '360-%' and ilp.PartNumber = '" +result+ "'");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            List<String> verifyImages = new List<String>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
-            }
+            string verifyImages = ds.Tables[0].Rows[0][0].ToString().Trim();
             return verifyImages;
         }
 
-        public List<string> VerifyProperImagesPresentInFolder(string result)
+        public string VerifyProperImagesPresentInFolder(string result)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"select Count(1) from [GlobalImageRepository].[import].[tblIMGImageListPersisted]  ilp where 1 = 1 and ilp.PartNumber = '" + result + "'");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            List<String> verifyImages = new List<String>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
-            }
+            string verifyImages = ds.Tables[0].Rows[0][0].ToString().Trim();
             return verifyImages;
         }
 

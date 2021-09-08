@@ -54,8 +54,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenVerifyUploadedProperImagesArePresentInTheImageFolderUsingQueryWithLIF(string properImageView)
         {
             string result1 = (string)ScenarioContext.Current["_result"];
-            string result2 = result1 + "-" + properImageView;
-            Assert.IsTrue(rsult.ProperImageVerification(result2));
+            Assert.IsTrue(rsult.ProperImageVerification(result1));
         }
 
         [When(@"I execute query to get the partNumber with (.*)")]

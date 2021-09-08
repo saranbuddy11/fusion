@@ -127,7 +127,7 @@ namespace OEC.Fusion.GlobalImageRepository
         {
             bool output;
             string expectedValue = "24";
-            string res = dBHelper.VerifyImagesPresentInFolder(result)[0];
+            string res = dBHelper.VerifyImagesPresentInFolder(result);
             if (expectedValue.Equals(res))
             {
                 output = true;
@@ -141,7 +141,7 @@ namespace OEC.Fusion.GlobalImageRepository
         {
             bool output;
             string expectedValue = "1";
-            string res = dBHelper.VerifyProperImagesPresentInFolder(result)[0];
+            string res = dBHelper.VerifyProperImagesPresentInFolder(result);
             if (expectedValue.Equals(res))
             {
                 output = true;
