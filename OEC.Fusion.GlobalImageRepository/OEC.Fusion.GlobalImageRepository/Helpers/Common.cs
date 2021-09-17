@@ -38,21 +38,24 @@ namespace OEC.Fusion.GlobalImageRepository
                     string prefix = i.ToString("D" + decimalLength.ToString());
                     pathJPG = pathJPG + prefix + ".jpg";
                     pathJPEG = pathJPEG + prefix + ".jpeg";
+
+                    //if (image.Equals("NotPresent"))
+                    //{
+                        try
+                        {
+                            bool a = (!File.Exists(pathJPG) && !File.Exists(pathJPEG));
+
+                            //Images are not present in the Image directory
+
+                            Assert.IsTrue(!File.Exists(pathJPG) || !File.Exists(pathJPEG));
+                            rslt = false;
+                        }
+                        catch (Exception e)
+                        {
+                            rslt = true;
+                            break;
+                        }
                     
-                    try
-                    {
-                        bool a = (!File.Exists(pathJPG) && !File.Exists(pathJPEG));
-
-                        //Images are not present in the Image directory
-
-                        Assert.IsTrue(!File.Exists(pathJPG) || !File.Exists(pathJPEG));
-                        rslt = false;
-                    }
-                    catch (Exception e)
-                    {
-                        rslt = true;
-                        break;
-                    }
                 }
                 else
                 {
@@ -69,6 +72,7 @@ namespace OEC.Fusion.GlobalImageRepository
                         break;
                     }
                 }
+                
             }
             return rslt;
         }
@@ -182,11 +186,11 @@ namespace OEC.Fusion.GlobalImageRepository
             return dateTimeAttribute;
         }
 
-        public void GetNonExistingPN()
+       /* public void GetNonExistingPN()
         {
             NonexistPartNumber = ConfigHelper.NonExistingPartNo();
-            Assert.IsTrue(dBHelper.VerifyNonExistingPN().Equals("0"));
-        }
+            //Assert.IsTrue(dBHelper.VerifyNonExistingPN().Equals("0"));
+        }*/
 
         public Boolean NormalImagePresent(string result, string properImageView)
         {
@@ -220,8 +224,53 @@ namespace OEC.Fusion.GlobalImageRepository
             }
             return rslt;
         }
+
+        public Boolean PresentNotPresent(string result, string image)
+        {
+            bool rslt = false;
+            for (int i = 1; i <= 24; i++)
+            {
+                string pathJPG = ConfigHelper.ImagesPath() + result + "-360-";
+                string pathJPEG = ConfigHelper.ImagesPath() + result + "-360-";
+                
+                    if (i < 10)
+                    {
+                        int decimalLength = i.ToString("D").Length + 1;
+                        string prefix = i.ToString("D" + decimalLength.ToString());
+                        pathJPG = pathJPG + prefix + ".jpg";
+                        pathJPEG = pathJPEG + prefix + ".jpeg";
+                    //bool a = (!File.Exists(pathJPG) && !File.Exists(pathJPEG));
+                    if (image.Equals(image))
+                    {
+                        Assert.IsFalse(File.Exists(pathJPG) || File.Exists(pathJPEG)); //False - not present
+                        rslt = false;
+                    }
+                    else
+                    {
+                        rslt = true;
+                    }
+                }
+                    else
+                    {
+                        pathJPG = pathJPG + i + ".jpg";
+                        pathJPEG = pathJPEG + i + ".jpeg";
+                    if (image.Equals(image))
+                    {
+                        Assert.IsFalse(File.Exists(pathJPG) || File.Exists(pathJPEG));
+                        rslt = false; // False - not present
+                    }
+                    else
+                    {
+                        rslt = true;
+                    }
+                }
+                
+            }
+            return rslt;
+        }
+
     }
-    }
+}
 
 
 

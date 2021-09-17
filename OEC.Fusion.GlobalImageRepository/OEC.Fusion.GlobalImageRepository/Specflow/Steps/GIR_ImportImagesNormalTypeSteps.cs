@@ -57,41 +57,13 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             Assert.IsTrue(rsult.ProperImageVerification(result1));
         }
 
-        [When(@"I execute query to get the partNumber with (.*)")]
-        public void WhenIExecuteQueryToGetThePartNumberWith(string CurlImageView)
-        {
-            string result = dbhelper.GetProperImageNumber(CurlImageView);
-            ScenarioContext.Current["_result"] = result;
-            Console.WriteLine(result);
-        }
 
         [Then(@"Rename the Image file with the partnumber and (.*) in the format PN-NewImageView")]
         public void ThenRenameTheImageFileWithThePartnumberAndInTheFormatPN_NewImageView(string NewImageView)
         {
-            String result = (string)ScenarioContext.Current["_result"];
+            string result = (string)ScenarioContext.Current["_result"];
             string datetime = (string)ScenarioContext.Current["_datetime"];
             fileOp.RenameProperImage(NewImageView,datetime,result);
-        }
-
-        [Then(@"Verify uploaded proper image is present in the Image directory with (.*)")]
-        public void ThenVerifyUploadedProperImageIsPresentInTheImageDirectoryWith(string ExpectedImageView)
-        {
-            string result = (string)ScenarioContext.Current["_result"];
-            rsult.NormalImagePresent(result,ExpectedImageView);
-        }
-
-        [Then(@"Verify image with (.*) has '1' in a PrimaryView column in the tblIMGImageDetails")]
-        public void ThenVerifyImageWithLIFHasInAPrimaryViewColumnInTheTblIMGImageDetails(string ExpectedImageView)
-        {
-            string result = (string)ScenarioContext.Current["_result"];
-            dbe.VerifyExpectedViewImage(ExpectedImageView, result);
-        }
-
-        [Then(@"Verify the other has '(.*)' in a PrimaryView column in the tblIMGImageDetails")]
-        public void ThenVerifyTheOtherHasInAPrimaryViewColumnInTheTblIMGImageDetails(string ExpectedImageView)
-        {
-            string result = (string)ScenarioContext.Current["_result"];
-            dbe.VerifyOtherImage(ExpectedImageView, result);
         }
 
         [Then(@"Rename the Image file with the non-used partnumber and (.*) in the format PN-NewImageView")]
@@ -122,6 +94,18 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             string result = (string)ScenarioContext.Current["_result"];
             string result2 = result + "-" + ImproperImageView;
             Assert.IsFalse(rsult.ProperImageVerification(result2));
+        }
+
+        [When(@"I run the query to find the image in the folder with (.*)")]
+        public void WhenIRunTheQueryToFindTheImageInTheFolderWithLIF(string ExpectedImageView)
+        {
+            dbe.VerifyExpectedViewImage("LIF", "1c3z3b396da");
+        }
+
+        [Then(@"Print this")]
+        public void ThenPrintThis()
+        {
+            Console.WriteLine("Test");
         }
 
     }

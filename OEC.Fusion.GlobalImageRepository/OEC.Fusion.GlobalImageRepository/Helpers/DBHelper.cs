@@ -133,15 +133,19 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return results;
         }
 
-        public string ExpectedImageView(string ExpectedImageView, string result)
+        public List<string> ExpectedImageView(string ExpectedImageView, string result)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"select PrimaryView FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd where 1=1 and substring(ImageName,1,len(ImageName)-8) = '"+result+"' and ImageView = '"+ExpectedImageView+"'");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
-            return results;
-           
+            List<String> verifyImages = new List<String>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
+            }
+            //string results = ds.Tables[0].Rows[0][0].ToString().Trim();
+            return verifyImages; 
         }
 
         public string OtherImageView(string ExpectedImageView, string result)

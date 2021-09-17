@@ -46,7 +46,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void VerifyExpectedViewImage(string ExpectedImageView, string result)
         {
-            string ExpectedImage = dbhelper.ExpectedImageView(ExpectedImageView,result);
+            string ExpectedImage = dbhelper.ExpectedImageView(ExpectedImageView,result)[0];
             Assert.AreEqual(ExpectedImage, "True");
         }
         public void VerifyOtherImage(string ExpectedImageView, string result)

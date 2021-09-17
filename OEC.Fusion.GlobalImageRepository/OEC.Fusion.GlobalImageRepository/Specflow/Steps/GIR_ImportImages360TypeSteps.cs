@@ -28,6 +28,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public string partNumAU = "";
         public string dateTimeUsedPN = "";
         public string NonexistPartNumber = "";
+        public string image = "";
         ScenarioContext _scenarioContext;
         private byte[] data= {1,2,3,5};
 
@@ -40,21 +41,20 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             fileOp = new FileOperations();
         }
 
-
-        [Given(@"When I connect to the database")]
+        [BeforeScenario]
         public void GivenWhenIConnectToTheDatabase()
         {
             string db = ConfigHelper.GetDefaultConnection();
         }
         
-        [When(@"I execute query to get the non used partNumber")]
+        [Given(@"I execute query to get the non used partNumber")]
         public void WhenIExecuteQueryToGetTheNonUsedPartNumber()
         {
             result = dbhelper.GetPartNumber();
             ScenarioContext.Current["_result"] = result;
         }
 
-        [Then(@"I verify the partnumber images are not present in Image directory")]
+        [When(@"I verify the partnumber images are not present in Image directory")]
         public void ThenIVerifyThePartnumberImagesAreNotPresentInImageDirectory()
         {
             Assert.IsFalse(Convert.ToBoolean(rsult.ImageNotPresent(result)));
@@ -69,6 +69,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             ScenarioContext.Current["_datetime"] = datetime;
             fileOp.CreateFolderWithCurrentDateTime(datetime);
         }
+
 
         [Then(@"Copy 24 image files from ImagesToUse folder to the newly created folder")]
         public void CopyFilesFromPartsToNewFolder()
@@ -124,13 +125,13 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             Assert.IsTrue(rsult.FileNotPresentInSftp(datetime));
         }
 
-        [When(@"I execute query to get already used partNumber")]
+        [Given(@"I execute query to get already used partNumber")]
         public void IExecuteQueryToGetAlreadyUsedPartNumber()
         {
             partNumAU = dbhelper.GetPartNumberAlreadyUsed();
         }
 
-        [Then(@"I verify the partnumber image files are present in Image directory")]
+        [When(@"I verify the partnumber image files are present in Image directory")]
         public void ThenIVerifyThePartnumberImageFilesArePresentInImageDirectory()
         {
             Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
@@ -167,10 +168,10 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             Assert.IsTrue(rsult.DateTimeVerification(dateTimeUsedPN, partNumAU));
         }
 
-        [When(@"I execute query with non-existing partnumber and verify the partnumber does not exist in Images folder")]
+        [Given(@"I execute query with non-existing partnumber and verify the partnumber does not exist in Images folder")]
         public void WhenIExecuteQueryWithNon_ExistingPartnumberAndVerifyThePartnumberDoesNotExistInImagesFolder()
         {
-            rsult.GetNonExistingPN();
+            result = ConfigHelper.NonExistingPartNo();
         }
 
         [Then(@"Verify the partnumber images are not present in Image directory")]
