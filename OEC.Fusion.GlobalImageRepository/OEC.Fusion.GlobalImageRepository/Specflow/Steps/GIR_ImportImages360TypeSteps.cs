@@ -57,7 +57,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [When(@"I verify the partnumber images are not present in Image directory")]
         public void ThenIVerifyThePartnumberImagesAreNotPresentInImageDirectory()
         {
-            Assert.IsFalse(Convert.ToBoolean(rsult.ImageNotPresent(result)));
+            string image = ConfigHelper.ImageNotPresent();
+            Assert.IsFalse(Convert.ToBoolean(rsult.ImageVerification(result,image)));
         }
 
         [Then(@"Create a folder in local directory with format payyyy-mm-dd_hhmmss")]
@@ -110,13 +111,14 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify uploaded images are present in the Image directory")]
         public void VerifyUploadedImagesPresentInImageDirectory()
         {
-            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(result)));
+            string image = ConfigHelper.ImagePresent();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(result,image)));
         }
 
         [Then(@"Verify uploaded images are present in the Image folder using query")]
         public void ThenVerifyTheUploadedImagesIsPresentInTheImageDirectoryUsingQuery()
         {
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(result)));
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerificationQuery(result)));
         }
 
         [Then(@"Verify the created zip file is removed from sftp path")]
@@ -134,7 +136,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [When(@"I verify the partnumber image files are present in Image directory")]
         public void ThenIVerifyThePartnumberImageFilesArePresentInImageDirectory()
         {
-            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+            string image = ConfigHelper.ImagePresent();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU,image)));
         }
 
         [Then(@"Get the latest date and time attribute of the images present in Image directory")]
@@ -152,13 +155,14 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify re-uploaded images are present in the Image directory")]
         public void VerifyReUploadedImagesPresentInImageDirectory()
         {
-            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+            string image = ConfigHelper.ImagePresent();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU,image)));
         }
 
         [Then(@"Verify re-uploaded images are present in the Image folder using query")]
         public void ThenVerifyTheReUploadedImagesIsPresentInTheImageDirectoryUsingQuery()
         {
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU)));
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerificationQuery(partNumAU)));
         }
 
         [Then(@"verify the Date and time attribute of the newly uploaded images is greater than the old images")]
@@ -177,7 +181,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify the partnumber images are not present in Image directory")]
         public void ThenVerifyThePartnumberImagesAreNotPresentInImageDirectory()
         {
-            rsult.ImageNotPresent(rsult.NonexistPartNumber);
+            string image = ConfigHelper.ImageNotPresent();
+            Assert.IsFalse(Convert.ToBoolean(rsult.ImageVerification(result, image)));
         }
 
         [Then(@"Rename the files with the non-existing partnumber in the format PN-360-01")]
@@ -190,7 +195,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify the partnumber images are not present in Image directory using Query")]
         public void ThenVerifyThePartnumberImagesAreNotPresentInImageDirectoryUsingQuery()
         {
-            Assert.IsFalse(rsult.ImageVerification(NonexistPartNumber));
+            Assert.IsFalse(rsult.ImageVerificationQuery(NonexistPartNumber));
         }
 
         [Then(@"Copy only one image file from ImagesToUse folder to the newly created folder")]
@@ -208,13 +213,14 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Verify the partnumber images are present in Image directory")]
         public void ThenVerifyThePartnumberImagesArePresentInImageDirectory()
         {
-            Assert.IsFalse(Convert.ToBoolean(rsult.ImagePresent(partNumAU)));
+            string image = ConfigHelper.ImagePresent();
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU,image)));
         }
 
         [Then(@"Verify the partnumber images are present in Image directory using Query")]
         public void ThenVerifyThePartnumberImagesArePresentInImageDirectoryUsingQuery()
         {
-            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerification(partNumAU)));
+            Assert.IsTrue(Convert.ToBoolean(rsult.ImageVerificationQuery(partNumAU)));
         }
 
         [Then(@"Copy 25 image files from ImagesToUse folder to the newly created folder")]
