@@ -158,10 +158,7 @@ namespace OEC.Fusion.GlobalImageRepository
                 rslt = true;
             }
             return rslt;
-        }
-
-
-        
+        }   
     }
 }
 

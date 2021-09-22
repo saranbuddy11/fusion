@@ -95,18 +95,5 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             string result2 = result + "-" + ImproperImageView;
             Assert.IsFalse(rsult.ProperImageVerification(result2));
         }
-
-        [When(@"I run the query to find the image in the folder with (.*)")]
-        public void WhenIRunTheQueryToFindTheImageInTheFolderWithLIF(string ExpectedImageView)
-        {
-            dbe.VerifyExpectedViewImage("LIF", "1c3z3b396da");
-        }
-
-        [Then(@"Print this")]
-        public void ThenPrintThis()
-        {
-            Console.WriteLine("Test");
-        }
-
     }
 }

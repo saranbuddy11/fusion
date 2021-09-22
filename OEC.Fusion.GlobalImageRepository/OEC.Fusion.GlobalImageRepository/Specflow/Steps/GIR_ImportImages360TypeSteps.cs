@@ -168,7 +168,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"verify the Date and time attribute of the newly uploaded images is greater than the old images")]
         public void ThenVerifyTheDateAndTimeAttributeOfTheNewlyUploadedImagesIsGreaterThanTheOldImages()
         {
-
             Assert.IsTrue(rsult.DateTimeVerification(dateTimeUsedPN, partNumAU));
         }
 
@@ -188,7 +187,6 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Then(@"Rename the files with the non-existing partnumber in the format PN-360-01")]
         public void ThenRenameTheFilesWithTheNon_ExistingPartnumberInTheFormatPN()
         {
-
             fileOp.RenamingFilesNonExistingPN(datetime, rsult.NonexistPartNumber);
         }
 
@@ -321,6 +319,5 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             string filename = ConfigHelper.TestAutomationPath() + datetime+ ".zip";
             fileOp.ReplaceDataByte(filename, 1, data);
         }
-
     }
 }

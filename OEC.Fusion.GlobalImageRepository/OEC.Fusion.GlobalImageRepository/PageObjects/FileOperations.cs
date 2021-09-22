@@ -104,7 +104,6 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         public void ZipFolder(string datetime)
         {
             ZipFile.CreateFromDirectory(ConfigHelper.TestAutomationPath() + datetime + "", ConfigHelper.TestAutomationPath() + datetime + ".zip");
-
         }
 
         public void CopyZipFilesToGir2qc(string datetime)
