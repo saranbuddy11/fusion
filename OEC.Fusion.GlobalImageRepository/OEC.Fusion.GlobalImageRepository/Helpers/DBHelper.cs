@@ -144,7 +144,6 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             {
                 verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
             }
-            //string results = ds.Tables[0].Rows[0][0].ToString().Trim();
             return verifyImages; 
         }
 
