@@ -175,7 +175,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         [Given(@"I execute query with non-existing partnumber and verify the partnumber does not exist in Images folder")]
         public void WhenIExecuteQueryWithNon_ExistingPartnumberAndVerifyThePartnumberDoesNotExistInImagesFolder()
         {
-            result = ConfigHelper.NonExistingPartNo();
+            result = rsult.GetNonExistingPN();
         }
 
         [Then(@"Verify the partnumber images are not present in Image directory")]

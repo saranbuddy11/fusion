@@ -120,11 +120,12 @@ namespace OEC.Fusion.GlobalImageRepository
             return dateTimeAttribute;
         }
 
-       /* public void GetNonExistingPN()
+        public string GetNonExistingPN()
         {
             NonexistPartNumber = ConfigHelper.NonExistingPartNo();
-            //Assert.IsTrue(dBHelper.VerifyNonExistingPN().Equals("0"));
-        }*/
+            Assert.IsTrue(dBHelper.VerifyNonExistingPN().Equals("0"));
+            return NonexistPartNumber;
+        }
 
         public Boolean NormalImagePresent(string result, string properImageView)
         {
