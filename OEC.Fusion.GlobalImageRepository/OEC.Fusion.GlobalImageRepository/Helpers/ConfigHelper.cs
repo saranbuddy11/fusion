@@ -70,6 +70,16 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return GetConfig()["ExistingFile"];
         }
 
+        public static string ImagePresent()
+        {
+            return GetConfig()["ImagePresent"];
+        }
+
+        public static string ImageNotPresent()
+        {
+            return GetConfig()["ImageNotPresent"];
+        }
+
     }
 }
 

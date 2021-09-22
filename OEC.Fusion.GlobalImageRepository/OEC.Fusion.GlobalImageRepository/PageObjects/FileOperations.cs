@@ -15,7 +15,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void CreateFolderWithCurrentDateTime(string dateTime)
         {
-            String dir = ConfigHelper.TestAutomationPath();
+            string dir = ConfigHelper.TestAutomationPath();
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -27,9 +27,9 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void CopyImagesToUse(string datetime, int count)
         {
-            String source = ConfigHelper.ImagesToUsePath();
-            String target = ConfigHelper.TestAutomationPath() + datetime + "\\";
-            String[] files = Directory.GetFiles(source);
+            string source = ConfigHelper.ImagesToUsePath();
+            string target = ConfigHelper.TestAutomationPath() + datetime + "\\";
+            string[] files = Directory.GetFiles(source);
             foreach (string fil in files)
             {
                 string fileName = Path.GetFileName(fil);
@@ -47,9 +47,9 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void CopyImageToUse(string datetime)
         {
-            String source = ConfigHelper.ImagesToUsePath();
+            string source = ConfigHelper.ImagesToUsePath();
             string target = @""+ ConfigHelper.TestAutomationPath() + datetime + "\\";
-            String[] files = Directory.GetFiles(source);
+            string[] files = Directory.GetFiles(source);
             int i;
             for (i = 1; i <= 1; i++)
             {
@@ -82,7 +82,7 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
 
         public void RenamingFilesWithUsedPN(string datetime)
         {
-            String resultAU = dbhelper.GetPartNumberAlreadyUsed();
+            string resultAU = dbhelper.GetPartNumberAlreadyUsed();
             DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
@@ -104,7 +104,6 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
         public void ZipFolder(string datetime)
         {
             ZipFile.CreateFromDirectory(ConfigHelper.TestAutomationPath() + datetime + "", ConfigHelper.TestAutomationPath() + datetime + ".zip");
-
         }
 
         public void CopyZipFilesToGir2qc(string datetime)
@@ -166,6 +165,16 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             using Stream stream = File.Open(filename, FileMode.Open);
             stream.Position = position;
             stream.Write(data, 0, data.Length);
+        }
+
+        public void RenameProperImage(string properImageView, string datetime, string result)
+        {
+            DirectoryInfo d = new DirectoryInfo(ConfigHelper.TestAutomationPath() + datetime + "\\");
+            FileInfo[] infos = d.GetFiles();
+            foreach (FileInfo f in infos)
+            {
+                File.Move(f.FullName, f.FullName.Replace(ConfigHelper.LastImage(), result+"-"+properImageView));
+            }
         }
     }
 }

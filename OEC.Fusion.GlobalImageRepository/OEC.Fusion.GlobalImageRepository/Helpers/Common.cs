@@ -18,117 +18,68 @@ namespace OEC.Fusion.GlobalImageRepository
         public string datetime = "";
         public string NonexistPartNumber = "";
 
-        public Boolean ImageNotPresent(string result)
+        public Boolean ImageVerification(string result, string image)
         {
             bool rslt = false;
             for (int i = 1; i <= 24; i++)
             {
-                //Path of JPG anf JPEG files in Image directory
-
                 string pathJPG = ConfigHelper.ImagesPath() + result + "-360-";
                 string pathJPEG = ConfigHelper.ImagesPath() + result + "-360-";
-
                 if (i < 10)
                 {
-
-                    //add 1 to 9 with the path and to change the integer from 1 to 01 upto 09
-                    //1 => the number of precision
-
                     int decimalLength = i.ToString("D").Length + 1;
                     string prefix = i.ToString("D" + decimalLength.ToString());
                     pathJPG = pathJPG + prefix + ".jpg";
                     pathJPEG = pathJPEG + prefix + ".jpeg";
-                    
-                    try
+                    if (image.Equals("ImageNotPresent"))
                     {
-                        bool a = (!File.Exists(pathJPG) && !File.Exists(pathJPEG));
-
-                        //Images are not present in the Image directory
-
-                        Assert.IsTrue(!File.Exists(pathJPG) || !File.Exists(pathJPEG));
+                        Assert.IsTrue(!File.Exists(pathJPG) && !File.Exists(pathJPEG));
                         rslt = false;
                     }
-                    catch (Exception e)
+                    else
                     {
+                        Assert.IsTrue(File.Exists(pathJPG) || File.Exists(pathJPEG));
                         rslt = true;
-                        break;
                     }
                 }
                 else
                 {
                     pathJPG = pathJPG + i + ".jpg";
                     pathJPEG = pathJPEG + i + ".jpeg";
-                    try
+                    if (image.Equals("ImageNotPresent"))
                     {
-                        Assert.IsTrue(!File.Exists(pathJPG) || !File.Exists(pathJPEG));
+                        Assert.IsTrue(!File.Exists(pathJPG) && !File.Exists(pathJPEG));
                         rslt = false;
                     }
-                    catch (Exception e)
+                    else
                     {
+                        Assert.IsTrue(File.Exists(pathJPG) || File.Exists(pathJPEG));
                         rslt = true;
-                        break;
                     }
                 }
             }
             return rslt;
         }
 
-        public Boolean ImagePresent(string result)
-        {
-            bool rslt=false;
-            for (int i = 1; i <= 24; i++)
-            {
-                string path =  ConfigHelper.ImagesPath() + result + "-360-";
-                string pathJPEG = ConfigHelper.ImagesPath() + result + "-360-";
-                if (i < 10)
-                {
-
-                    //To change the integer from 1 to 01 upto 09
-                    //1 => the number of precision
-
-                    int decimalLength = i.ToString("D").Length + 1;
-                    string prefix = i.ToString("D" + decimalLength.ToString());
-                    path = path + prefix + ".jpg";
-                    pathJPEG = pathJPEG + prefix + ".jpeg";
-                    try
-                    {
-                        //Images are not present in the Image directory
-
-                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
-                        rslt = false;
-                    }
-                    catch (Exception e)
-                    {
-                        rslt = true;
-                        break;
-                    }
-                }
-                else
-                {
-                    path = path + i + ".jpg";
-                    pathJPEG = pathJPEG + i + ".jpeg";
-                    try
-                    {
-                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
-                        rslt = false;
-                    }
-                    catch (Exception e)
-                    {
-                        rslt = true;
-                        break;
-
-                    }
-                }
-            }
-                return rslt;
-            
-        }
-
-        public Boolean ImageVerification(String result)
+        public Boolean ImageVerificationQuery(String result)
         {
             bool output;
             string expectedValue = "24";
-            string res = dBHelper.VerifyImagesPresentInFolder(result)[0];
+            string res = dBHelper.VerifyImagesPresentInFolder(result);
+            if (expectedValue.Equals(res))
+            {
+                output = true;
+            }
+            else
+                output = false;
+            return output;
+        }
+
+        public Boolean ProperImageVerification(string result)
+        {
+            bool output;
+            string expectedValue = "1";
+            string res = dBHelper.VerifyProperImagesPresentInFolder(result);
             if (expectedValue.Equals(res))
             {
                 output = true;
@@ -169,14 +120,48 @@ namespace OEC.Fusion.GlobalImageRepository
             return dateTimeAttribute;
         }
 
-        public void GetNonExistingPN()
+        public string GetNonExistingPN()
         {
             NonexistPartNumber = ConfigHelper.NonExistingPartNo();
             Assert.IsTrue(dBHelper.VerifyNonExistingPN().Equals("0"));
+            return NonexistPartNumber;
         }
 
+        public Boolean NormalImagePresent(string result, string properImageView)
+        {
+            bool rslt = false;
+                string path = ConfigHelper.ImagesPath() + result + "-" + properImageView +".jpg";
+                string pathJPEG = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpeg";
+                try {
+                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
+                        rslt = false;
+                    }
+                catch (Exception e)
+                    {
+                        rslt = true;
+                    }
+            return rslt;
+        }
+
+        public Boolean NormalImageNotPresent(string result, string properImageView)
+        {
+            bool rslt = false;
+            string path = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpg";
+            string pathJPEG = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpeg";
+            try
+            {
+                Assert.IsTrue(!File.Exists(path) || !File.Exists(pathJPEG));
+                rslt = false;
+            }
+            catch (Exception e)
+            {
+                rslt = true;
+            }
+            return rslt;
+        }   
     }
 }
+
 
 
 

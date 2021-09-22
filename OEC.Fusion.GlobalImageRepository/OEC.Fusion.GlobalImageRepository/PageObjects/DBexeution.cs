@@ -43,5 +43,16 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             String sprocedure = "[GlobalImageRepository].[dbo].[spPRODDailyDownload]";
             dbhelper.SpPRODDailyDownload(sprocedure);
         }
+
+        public void VerifyExpectedViewImage(string ExpectedImageView, string result)
+        {
+            string ExpectedImage = dbhelper.ExpectedImageView(ExpectedImageView,result)[0];
+            Assert.AreEqual(ExpectedImage, "True");
+        }
+        public void VerifyOtherImage(string ExpectedImageView, string result)
+        {
+            string OtherImage = dbhelper.OtherImageView(ExpectedImageView, result);
+            Assert.AreEqual(OtherImage, "False");
+        }
     }
 }
