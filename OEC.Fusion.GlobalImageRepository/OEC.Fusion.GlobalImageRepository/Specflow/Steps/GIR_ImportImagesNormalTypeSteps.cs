@@ -22,6 +22,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public string partNumAU = "";
         public string dateTimeUsedPN = "";
         public string NonexistPartNumber = "";
+        string NormalImage = "";
         private byte[] data = { 1, 2, 3, 5 };
         ScenarioContext _scenarioContext;
 
@@ -47,7 +48,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenVerifyUploadedProperImagesArePresentInTheImageDirectoryWith(string properImageView)
         {
             string result1 = (string)ScenarioContext.Current["_result"];
-            rsult.NormalImagePresent(result1, properImageView);
+            string NormalImage = ConfigHelper.NormalImagePresent();
+            rsult.NormalImageVerification(result1, properImageView, NormalImage);
         }
 
         [Then(@"Verify uploaded proper images are present in the Image folder using query with (.*)")]
@@ -78,7 +80,8 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ThenVerifyUploadedImproperImagesAreNotPresentInTheImageDirectoryWithLI(string ImproperImageView)
         {
             string result = (string)ScenarioContext.Current["_result"];
-            rsult.NormalImageNotPresent(result, ImproperImageView);
+            string NormalImage = ConfigHelper.NormalImageNotPresent();
+            rsult.NormalImageVerification(result, ImproperImageView, NormalImage);
         }
 
         [Then(@"Verify uploaded Improper images are not present in the Image folder using query")]

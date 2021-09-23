@@ -127,38 +127,23 @@ namespace OEC.Fusion.GlobalImageRepository
             return NonexistPartNumber;
         }
 
-        public Boolean NormalImagePresent(string result, string properImageView)
+        public Boolean NormalImageVerification(string result, string properImageView, string NormalImage)
         {
             bool rslt = false;
                 string path = ConfigHelper.ImagesPath() + result + "-" + properImageView +".jpg";
                 string pathJPEG = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpeg";
-                try {
-                        Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
-                        rslt = false;
-                    }
-                catch (Exception e)
-                    {
-                        rslt = true;
-                    }
-            return rslt;
-        }
-
-        public Boolean NormalImageNotPresent(string result, string properImageView)
-        {
-            bool rslt = false;
-            string path = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpg";
-            string pathJPEG = ConfigHelper.ImagesPath() + result + "-" + properImageView + ".jpeg";
-            try
+            if (NormalImage.Equals("Present"))
             {
-                Assert.IsTrue(!File.Exists(path) || !File.Exists(pathJPEG));
+                Assert.IsTrue(File.Exists(path) || File.Exists(pathJPEG));
                 rslt = false;
             }
-            catch (Exception e)
+            else
             {
+                Assert.IsTrue(!File.Exists(path) || !File.Exists(pathJPEG));
                 rslt = true;
             }
             return rslt;
-        }   
+        }
     }
 }
 
