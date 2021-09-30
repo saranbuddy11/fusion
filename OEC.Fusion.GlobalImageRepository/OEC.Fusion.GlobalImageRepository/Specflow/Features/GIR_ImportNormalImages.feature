@@ -39,6 +39,29 @@ Examples:
 	| ZZ8             |
 	| ZZ9             |
 
+Scenario Outline: 2 Check PrimaryView column for uploading a new, proper normal image
+	Given I execute query partNumber with <CurlImageView> and Primary View = 1
+	When Verify the partnumber images are present in Image directory with <CurlImageView>
+	Then Create a folder in local directory with format payyyy-mm-dd_hhmmss
+	And Copy only one image file from ImagesToUse folder to the newly created folder
+	And Rename the Image file with CurlImage partnumber and <NewImageView> in the format PN-NewImageView
+	And Zip created folder
+	And Find sftp directory to upload the zip file
+	And Copy zip file to the ctsftp.gir2qc directory
+	And Run spPRODDailyDownload procedure to Upload zip file in Image directory
+	And Verify uploaded proper images are not present in the Image directory with <ExpectedImageView>
+	And Verify the number of Primary views for the image using query
+	And Verify the expected Image view using query with <ExpectedImageView>
+	And Verify the Other view for the image using query with <ExpectedImageView>
+	And Verify the created zip file is removed from sftp path
+
+Examples:
+	| Example | CurlImageView | NewImageView | ExpectedImageView |
+	| 1.FRO   | FRO           | LIF          | LIF               |
+	| 2.ANG   | ANG           | FRO          | FRO               |
+	| 3.ANG   | ANG           | LIF          | LIF               |
+
+
 
 
 Scenario Outline: 3 Upload normal image with improper image view
@@ -65,6 +88,9 @@ Examples:
 	| ZZ10              |
 	| Z10               |
 
+
+
+	
 
 
 

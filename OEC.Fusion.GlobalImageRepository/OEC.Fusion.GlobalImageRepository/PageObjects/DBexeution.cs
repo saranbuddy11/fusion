@@ -44,11 +44,12 @@ namespace OEC.Fusion.GlobalImageRepository.PageObjects
             dbhelper.SpPRODDailyDownload(sprocedure);
         }
 
-        public void VerifyExpectedViewImage(string ExpectedImageView, string result)
+       public void VerifyExpectedViewImage(string ExpectedImageView, string result)
         {
-            string ExpectedImage = dbhelper.ExpectedImageView(ExpectedImageView,result)[0];
+            string ExpectedImage = dbhelper.ExpectedImageView(ExpectedImageView,result);
             Assert.AreEqual(ExpectedImage, "True");
         }
+        
         public void VerifyOtherImage(string ExpectedImageView, string result)
         {
             string OtherImage = dbhelper.OtherImageView(ExpectedImageView, result);
