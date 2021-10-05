@@ -47,7 +47,7 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
             string db = ConfigHelper.GetDefaultConnection();
         }
         
-        [Given(@"I execute query to get the non used partNumber")]
+        [Given(@"I execute query to get the non-used partNumber")]
         public void WhenIExecuteQueryToGetTheNonUsedPartNumber()
         {
             result = dbhelper.GetPartNumber();
@@ -59,6 +59,17 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         {
             string image = ConfigHelper.ImageNotPresent();
             Assert.IsFalse(Convert.ToBoolean(rsult.ImageVerification(result,image)));
+        }
+
+        [Then(@"Create a folder with 24 images, rename the images with partnumber and zip the folder")]
+        public void ThenCreateAFolderWithImagesRenameTheImagesWithPartnumberAndZipTheFolder()
+        {
+            datetime = dbhelper.GetCurDateTime()[0];
+            ScenarioContext.Current["_datetime"] = datetime;
+            fileOp.CreateFolderWithCurrentDateTime(datetime);
+            fileOp.CopyImagesToUse(datetime, 24);
+            fileOp.RenamingFiles(datetime, result);
+            fileOp.ZipFolder(datetime);
         }
 
         [Then(@"Create a folder in local directory with format payyyy-mm-dd_hhmmss")]
@@ -88,6 +99,14 @@ namespace OEC.Fusion.GlobalImageRepository.Specflow.Steps
         public void ZipCreatedFolder()
         {
             fileOp.ZipFolder(datetime);
+        }
+
+        [Then(@"Upload the zip file in sftp directory and run the spPRODDailyDownload procedure to Upload zip file in Image directory")]
+        public void ThenUploadTheZipFileInSftpDirectoryAndRunTheSpPRODDailyDownloadProcedureToUploadZipFileInImageDirectory()
+        {
+            dbe.DirectoryToUploadTheZipFile();
+            fileOp.CopyZipFilesToGir2qc(datetime);
+            dbe.RunSpPRODDailyDownloadProcedure();
         }
 
         [Then(@"Find sftp directory to upload the zip file")]
