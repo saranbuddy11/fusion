@@ -133,18 +133,14 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return results;
         }
 
-        public List<string> ExpectedImageView(string ExpectedImageView, string result)
+        public string ExpectedImageView(string ExpectedImageView, string result)
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"select PrimaryView FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd where 1=1 and substring(ImageName,1,len(ImageName)-8) = '"+result+"' and ImageView = '"+ExpectedImageView+"'");
+            sb.AppendLine($"select PrimaryView FROM[GlobalImageRepository].[frontend].[tblIMGImageDetails] imd where 1=1 and substring(ImageName,1, len(ImageName)-8) = '"+ result +"' and ImageView = '"+ ExpectedImageView +"'");
             var sql = sb.ToString();
             System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
-            List<String> verifyImages = new List<String>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                verifyImages.Add(ds.Tables[0].Rows[i][0].ToString().Trim());
-            }
-            return verifyImages; 
+            string results = ds.Tables[0].Rows[0][0].ToString(); 
+            return results;
         }
 
         public string OtherImageView(string ExpectedImageView, string result)
@@ -156,5 +152,36 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             string results = ds.Tables[0].Rows[0][0].ToString().Trim();
             return results;
         }
+
+        public string GetPartNumberCurlImageView(string CurlImageView)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"SELECT TOP 1 substring(imd.ImageName,1,len(imd.ImageName)-8) FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd left join import.tblIMGImageListDeleted ild ON imd.ImageId = ild.ImageId WHERE 1=1 and imd.PrimaryView = 1 and imd.ImageView = '"+CurlImageView+"' and ild.ImageId is NULL");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
+            return results;
+        }
+
+        public string GetNoOfPrimaryViews(string result)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"select count(1) FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd where 1=1 and substring(ImageName,1,len(ImageName)-8) = '"+result+"' and PrimaryView = 1");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
+            return results;
+        }
+
+        public string Expected(string result)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"select count(1) FROM [GlobalImageRepository].[frontend].[tblIMGImageDetails] imd where 1=1 and substring(ImageName,1,len(ImageName)-8) = " + result + " and PrimaryView = 1");
+            var sql = sb.ToString();
+            System.Data.DataSet ds = dal.ExecuteSQLSelect(sql);
+            string results = ds.Tables[0].Rows[0][0].ToString().Trim();
+            return results;
+        }
+
     }
 }

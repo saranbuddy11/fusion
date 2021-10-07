@@ -80,7 +80,27 @@ namespace OEC.Fusion.GlobalImageRepository.Helpers
             return GetConfig()["ImageNotPresent"];
         }
 
+        public static string NormalImagePresent()
+        {
+            return GetConfig()["NormalImagePresent"];
+        }
+
+        public static string NormalImageNotPresent()
+        {
+            return GetConfig()["NormalImageNotPresent"];
+        }
+
+        public static string NoOfPrimaryImageViews()
+        {
+            return GetConfig()["NoOfPrimaryImageViews"];
+        }
+
+        public static string OtherImageView()
+        {
+            return GetConfig()["OtherImageView"];
+        }
     }
+
 }
 
 
