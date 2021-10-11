@@ -43,7 +43,7 @@ Scenario: 04 Reload 1 image of 360 type images
 	And Upload the zip file in sftp directory and run the spPRODDailyDownload procedure to Upload zip file in Image directory
 	And Verify the partnumber images are present in Image directory
 	And Verify the partnumber images are present in Image directory using Query
-	And verify the Date and time attribute of the newly uploaded images is not greater than the old imagesss
+	And verify the Date and time attribute of the newly uploaded images is not greater than the old images
 	And Verify the created zip file is removed from sftp path
 
 Scenario: 05 Reload 25 images from 360 type images for 1 part

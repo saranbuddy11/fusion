@@ -179,18 +179,6 @@ this._1UploadNewProperNormalTypeImageForAPart("FRO", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload new proper normal type image for a part: TIN")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "TIN")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:properImageView", "TIN")]
-        public virtual void _1UploadNewProperNormalTypeImageForAPart_TIN()
-        {
-#line 4
-this._1UploadNewProperNormalTypeImageForAPart("TIN", ((string[])(null)));
-#line hidden
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("1 Upload new proper normal type image for a part: ANG")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Normal Images")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "ANG")]
@@ -427,7 +415,7 @@ this._1UploadNewProperNormalTypeImageForAPart("ZZ9", ((string[])(null)));
             argumentsOfScenario.Add("NewImageView", newImageView);
             argumentsOfScenario.Add("ExpectedImageView", expectedImageView);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2 Check PrimaryView column for uploading a new, proper normal image", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 40
+#line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -447,42 +435,42 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 41
+#line 40
  testRunner.Given(string.Format("I execute query partNumber with {0} and Primary View = 1", curlImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 42
+#line 41
  testRunner.When(string.Format("Verify the partnumber images are present in Image directory with {0}", curlImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 43
+#line 42
  testRunner.Then("Create a folder in local directory with format payyyy-mm-dd_hhmmss", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 44
+#line 43
  testRunner.And("Copy only one image file from ImagesToUse folder to the newly created folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 45
+#line 44
  testRunner.And(string.Format("Rename the Image file with CurlImage partnumber and {0} in the format PN-NewImage" +
                             "View", newImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 46
+#line 45
  testRunner.And("Zip created folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
+#line 46
  testRunner.And("Upload the zip file in sftp directory and run the spPRODDailyDownload procedure t" +
                         "o Upload zip file in Image directory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 48
+#line 47
  testRunner.And(string.Format("Verify uploaded proper images are not present in the Image directory with {0}", expectedImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 49
+#line 48
  testRunner.And("Verify the number of Primary views for the image using query", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 50
+#line 49
  testRunner.And(string.Format("Verify the expected Image view using query with {0}", expectedImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 51
+#line 50
  testRunner.And(string.Format("Verify the Other view for the image using query with {0}", expectedImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 52
+#line 51
  testRunner.And("Verify the created zip file is removed from sftp path", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -499,7 +487,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedImageView", "LIF")]
         public virtual void _2CheckPrimaryViewColumnForUploadingANewProperNormalImage_1_FRO()
         {
-#line 40
+#line 39
 this._2CheckPrimaryViewColumnForUploadingANewProperNormalImage("1.FRO", "FRO", "LIF", "LIF", ((string[])(null)));
 #line hidden
         }
@@ -514,7 +502,7 @@ this._2CheckPrimaryViewColumnForUploadingANewProperNormalImage("1.FRO", "FRO", "
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedImageView", "LIF")]
         public virtual void _2CheckPrimaryViewColumnForUploadingANewProperNormalImage_2_ANG()
         {
-#line 40
+#line 39
 this._2CheckPrimaryViewColumnForUploadingANewProperNormalImage("2.ANG", "ANG", "LIF", "LIF", ((string[])(null)));
 #line hidden
         }
@@ -525,7 +513,7 @@ this._2CheckPrimaryViewColumnForUploadingANewProperNormalImage("2.ANG", "ANG", "
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("ImproperImageView", improperImageView);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 Upload normal image with improper image view", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 62
+#line 61
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -545,37 +533,37 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 63
+#line 62
  testRunner.Given("I execute query to get the non-used partNumber", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 64
+#line 63
  testRunner.When("I verify the partnumber images are not present in Image directory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 65
+#line 64
  testRunner.Then("Create a folder in local directory with format payyyy-mm-dd_hhmmss", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 66
+#line 65
  testRunner.And("Copy only one image file from ImagesToUse folder to the newly created folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 67
+#line 66
  testRunner.And(string.Format("Rename the Image file with the non-used partnumber and {0} in the format PN-NewIm" +
                             "ageView", improperImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 68
+#line 67
  testRunner.And("Zip created folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 69
+#line 68
  testRunner.And("Upload the zip file in sftp directory and run the spPRODDailyDownload procedure t" +
                         "o Upload zip file in Image directory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 70
+#line 69
  testRunner.And(string.Format("Verify uploaded Improper images are not present in the Image directory with {0}", improperImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 71
+#line 70
  testRunner.And(string.Format("Verify uploaded Improper images are not present in the Image folder using query w" +
                             "ith {0}", improperImageView), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 72
+#line 71
  testRunner.And("Verify the created zip file is removed from sftp path", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -589,7 +577,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ImproperImageView", "LI")]
         public virtual void _3UploadNormalImageWithImproperImageView_LI()
         {
-#line 62
+#line 61
 this._3UploadNormalImageWithImproperImageView("LI", ((string[])(null)));
 #line hidden
         }
@@ -601,7 +589,7 @@ this._3UploadNormalImageWithImproperImageView("LI", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ImproperImageView", "LIFF")]
         public virtual void _3UploadNormalImageWithImproperImageView_LIFF()
         {
-#line 62
+#line 61
 this._3UploadNormalImageWithImproperImageView("LIFF", ((string[])(null)));
 #line hidden
         }
@@ -613,7 +601,7 @@ this._3UploadNormalImageWithImproperImageView("LIFF", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ImproperImageView", "ANNG")]
         public virtual void _3UploadNormalImageWithImproperImageView_ANNG()
         {
-#line 62
+#line 61
 this._3UploadNormalImageWithImproperImageView("ANNG", ((string[])(null)));
 #line hidden
         }
@@ -625,7 +613,7 @@ this._3UploadNormalImageWithImproperImageView("ANNG", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ImproperImageView", "ANG-ANG")]
         public virtual void _3UploadNormalImageWithImproperImageView_ANG_ANG()
         {
-#line 62
+#line 61
 this._3UploadNormalImageWithImproperImageView("ANG-ANG", ((string[])(null)));
 #line hidden
         }
@@ -637,7 +625,7 @@ this._3UploadNormalImageWithImproperImageView("ANG-ANG", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ImproperImageView", "ZZ10")]
         public virtual void _3UploadNormalImageWithImproperImageView_ZZ10()
         {
-#line 62
+#line 61
 this._3UploadNormalImageWithImproperImageView("ZZ10", ((string[])(null)));
 #line hidden
         }
@@ -649,7 +637,7 @@ this._3UploadNormalImageWithImproperImageView("ZZ10", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ImproperImageView", "Z10")]
         public virtual void _3UploadNormalImageWithImproperImageView_Z10()
         {
-#line 62
+#line 61
 this._3UploadNormalImageWithImproperImageView("Z10", ((string[])(null)));
 #line hidden
         }
