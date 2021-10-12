@@ -16,7 +16,6 @@ Examples:
 	| properImageView |
 	| LIF             |
 	| FRO             |
-	| TIN             |
 	| ANG             |
 	| BAC             |
 	| LEF             |

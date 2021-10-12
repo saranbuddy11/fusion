@@ -333,7 +333,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 46
  testRunner.And("verify the Date and time attribute of the newly uploaded images is not greater th" +
-                        "an the old imagesss", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "an the old images", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 47
  testRunner.And("Verify the created zip file is removed from sftp path", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
